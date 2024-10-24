@@ -2,44 +2,44 @@
 using Hospital.Web.Repositories.Interfaces;
 using System.Linq.Expressions;
 
-namespace Hospital.Web.Repositories
+namespace Hospital.Repositories
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        protected ApplicationDbcontext ApplicationDbcontext { get; set; }
+        protected HospitalAppDbContext _hospitalAppDbContext { get; set; }
 
-        public RepositoryBase(ApplicationDbcontext ApplicationDbcontext)
+        public RepositoryBase(HospitalAppDbContext ApplicationDbcontext)
         {
-            this.ApplicationDbcontext = ApplicationDbcontext;
+            this._hospitalAppDbContext = ApplicationDbcontext;
         }
 
         public IQueryable<T> FindAll()
         {
-            return this.ApplicationDbcontext.Set<T>();
+            return this._hospitalAppDbContext.Set<T>();
         }
 
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
         {
-            return this.ApplicationDbcontext.Set<T>().Where(expression);
+            return this._hospitalAppDbContext.Set<T>().Where(expression);
         }
         public T GetByCondition(Expression<Func<T, bool>> expression)
         {
-            return this.ApplicationDbcontext.Set<T>().Where(expression).FirstOrDefault();
+            return this._hospitalAppDbContext.Set<T>().Where(expression).FirstOrDefault();
         }
 
         public void Create(T entity)
         {
-            this.ApplicationDbcontext.Set<T>().Add(entity);
+            this._hospitalAppDbContext.Set<T>().Add(entity);
         }
 
         public void Update(T entity)
         {
-            this.ApplicationDbcontext.Set<T>().Update(entity);
+            this._hospitalAppDbContext.Set<T>().Update(entity);
         }
 
         public void Delete(T entity)
         {
-            this.ApplicationDbcontext.Set<T>().Remove(entity);
+            this._hospitalAppDbContext.Set<T>().Remove(entity);
         }
     }
 }

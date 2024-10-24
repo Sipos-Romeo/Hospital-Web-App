@@ -2,6 +2,9 @@ using Hospital.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
+using Hospital.Repositories.Interfaces;
+using Hospital.Services.Interfaces;
+using Hospital.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<IdentityOptions>(options =>
@@ -23,13 +26,19 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-//IServiceCollection serviceCollection = builder.Services.AddDbContext<ApplicationDbcontext>
-//    (option=>Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<ApplicationDbcontext>(options =>
+#region Repositories and services
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
+builder.Services.AddScoped<IHospitalInfoRepository, HospitalInfoRepository>();
+builder.Services.AddScoped<IHospitalInfoService, HospitalInfoService>();
+#endregion
+
+builder.Services.AddDbContext<HospitalAppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbcontext>();
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<HospitalAppDbContext>();
 
 var app = builder.Build();
 
@@ -45,8 +54,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
 
+app.UseAuthentication();;
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -10,7 +10,7 @@ namespace Hospital.Repositories
 
         public RepositoryBase(HospitalAppDbContext ApplicationDbcontext)
         {
-            this._hospitalAppDbContext = ApplicationDbcontext;
+            _hospitalAppDbContext = ApplicationDbcontext;
         }
 
         public IQueryable<T> FindAll()

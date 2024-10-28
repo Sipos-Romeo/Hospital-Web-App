@@ -1,4 +1,6 @@
 ﻿using Hospital.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,11 @@ namespace Hospital.Repositories
     public class RepositoryWrapper : IRepositoryWrapper
     {
         private HospitalAppDbContext _hospitalAppDbContext;
+
+        public RepositoryWrapper(HospitalAppDbContext hospitalAppDbContext)
+        {
+            _hospitalAppDbContext = hospitalAppDbContext;
+        }
 
         public void Save()
         {

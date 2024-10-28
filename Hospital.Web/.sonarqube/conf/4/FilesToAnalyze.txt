@@ -1,0 +1,2 @@
+﻿F:\Hospital-Web-App\Hospital.Services\HospitalInfoService.cs
+F:\Hospital-Web-App\Hospital.Services\Interfaces\IHospitalInfoService.cs

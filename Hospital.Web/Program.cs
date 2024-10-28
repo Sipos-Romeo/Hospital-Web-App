@@ -7,6 +7,14 @@ using Hospital.Services.Interfaces;
 using Hospital.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<HospitalAppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<HospitalAppDbContext>();
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true;
@@ -32,13 +40,6 @@ builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddScoped<IHospitalInfoRepository, HospitalInfoRepository>();
 builder.Services.AddScoped<IHospitalInfoService, HospitalInfoService>();
 #endregion
-
-builder.Services.AddDbContext<HospitalAppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<HospitalAppDbContext>();
 
 var app = builder.Build();
 

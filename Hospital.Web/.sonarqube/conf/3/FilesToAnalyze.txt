@@ -1,0 +1,10 @@
+﻿F:\Hospital-Web-App\Hospital.Repositories\HospitalAppDbContext.cs
+F:\Hospital-Web-App\Hospital.Repositories\HospitalInfoRepository.cs
+F:\Hospital-Web-App\Hospital.Repositories\Interfaces\IHospitalInfoRepository.cs
+F:\Hospital-Web-App\Hospital.Repositories\Interfaces\IRepositoryBase.cs
+F:\Hospital-Web-App\Hospital.Repositories\Interfaces\IRepositoryWrapper.cs
+F:\Hospital-Web-App\Hospital.Repositories\Migrations\20241024171043_addedHospitalTable.cs
+F:\Hospital-Web-App\Hospital.Repositories\Migrations\20241024171043_addedHospitalTable.Designer.cs
+F:\Hospital-Web-App\Hospital.Repositories\Migrations\HospitalAppDbContextModelSnapshot.cs
+F:\Hospital-Web-App\Hospital.Repositories\RepositoryBase.cs
+F:\Hospital-Web-App\Hospital.Repositories\RepositoryWrapper.cs

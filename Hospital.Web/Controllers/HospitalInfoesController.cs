@@ -1,12 +1,8 @@
 ﻿using Hospital.Models;
 using Hospital.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using System.Security.Cryptography.Pkcs;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hospital.Web.Controllers
 {
@@ -25,7 +21,7 @@ namespace Hospital.Web.Controllers
             return View(_hospitalInfoService.GetAllHospitalInfo());
         }
 
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             return View();
         }
@@ -41,5 +37,71 @@ namespace Hospital.Web.Controllers
             }
             return View(hospitalInfo);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var item = _hospitalInfoService.GetHospitalInfoById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return View(item);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _hospitalInfoService.DeleteHospitalInfo(_hospitalInfoService.GetHospitalInfoById(id));
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var item = _hospitalInfoService.GetHospitalInfoById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id,  HospitalInfo hospitalInfo)
+        {
+            if (id != hospitalInfo.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _hospitalInfoService.UpdateHospitalInfo(hospitalInfo);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(hospitalInfo);
+        }
+        public IActionResult Details(int id)
+        {
+            var item = _hospitalInfoService.GetHospitalInfoById(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            return View(item);
+        }
+
     }
+
+    
 }

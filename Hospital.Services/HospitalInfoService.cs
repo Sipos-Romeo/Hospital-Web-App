@@ -31,10 +31,6 @@ namespace Hospital.Services
             _repositoryWrapper.Save();
         }
 
-        public void DeleteItem(string? v)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<HospitalInfo> GetAllHospitalInfo()
         {

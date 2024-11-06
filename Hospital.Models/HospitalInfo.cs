@@ -8,7 +8,7 @@
         public string City { get; set; }
         public string PinCode { get; set; }
         public string Country { get; set; }
-        public ICollection<Room> Rooms { get; set; }
-        public ICollection<Contact> Contacts { get; set; }
+        public ICollection<Room>? Rooms { get; set; }
+        public ICollection<Contact>? Contacts { get; set; }
     }
 }

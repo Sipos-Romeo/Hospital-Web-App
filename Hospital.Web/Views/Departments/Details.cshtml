@@ -1,6 +1,6 @@
 ﻿@using Hospital.Services;
 
-@model Hospital.Models.HospitalInfo
+@model Hospital.Models.Department
 
 @{
     ViewData["Title"] = "Details";
@@ -39,20 +39,20 @@
                                 <div class="row">
                                     <div class="col">
                                         <i class='bx bxs-category'></i>
-                                        <b>Type</b>
+                                        <b>Description</b>
                                     </div>
                                     <div class="col">
-                                        @Html.DisplayFor(model => model.Type)
+                                        @Html.DisplayFor(model => model.Description)
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col">
                                         <i class='bx bxs-category'></i>
-                                        <b>City</b>
+                                        <b>Employees</b>
                                     </div>
                                     <div class="col">
-                                        @Html.DisplayFor(model => model.City)
+                                        @Html.DisplayFor(model => model.Employees)
                                     </div>
                                 </div>
 

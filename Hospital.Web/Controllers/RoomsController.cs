@@ -11,7 +11,7 @@ namespace Hospital.Web.Controllers
         
             private readonly IRoomService _roomService;
 
-            public RoomsController(RoomService roomService)
+            public RoomsController(IRoomService roomService)
             {
             _roomService = roomService;
             }

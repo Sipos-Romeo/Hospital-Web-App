@@ -1,6 +1,6 @@
 ﻿@using Hospital.Services;
 
-@model Hospital.Models.HospitalInfo
+@model Hospital.Models.Appointment
 
 @{
     ViewData["Title"] = "Create";
@@ -12,7 +12,7 @@
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
             <h4>Create</h4>
-            <span class="ml-1">NewContactInfo </span>
+            <span class="ml-1">New Appoimtment </span>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
             <div class="col-md-8 col-lg-8">
                 <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
                     <div class="card-body text-center">
-                        <h4>"ContactInfo"</h4>
+                        <h4>"Appointment"</h4>
                         <hr />
                         <div class="text-left p-3 text-dark">
                             <form asp-action="Create">
@@ -37,8 +37,8 @@
                                         <b>Name:</b>
                                     </div>
                                     <div class="col-8">
-                                        <input asp-for="Name" class="form-control" />
-                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                        <input asp-for="Number" class="form-control" />
+                                        <span asp-validation-for="Number" class="text-danger"></span>
                                     </div>
                                 </div>
 
@@ -56,36 +56,47 @@
                                 <div class="form-group row my-3">
                                     <div class="col-4 my-2">
                                         <i class='bx bxs-book-content'></i>
-                                        <b>City:</b>
+                                        <b>Created Date:</b>
                                     </div>
                                     <div class="col-8">
-                                        <input asp-for="City" class="form-control" />
-                                        <span asp-validation-for="City" class="text-danger"></span>
+                                        <input asp-for="CreatedDate" class="form-control" />
+                                        <span asp-validation-for="CreatedDate" class="text-danger"></span>
                                     </div>
                                 </div>
 
                                 <div class="form-group row my-3">
                                     <div class="col-4 my-2">
                                         <i class='bx bxs-book-content'></i>
-                                        <b>Country:</b>
+                                        <b>Description:</b>
                                     </div>
                                     <div class="col-8">
-                                        <input asp-for="Country" class="form-control" />
-                                        <span asp-validation-for="Country" class="text-danger"></span>
+                                        <input asp-for="Description" class="form-control" />
+                                        <span asp-validation-for="Description" class="text-danger"></span>
                                     </div>
                                 </div>
 
                                 <div class="form-group row my-3">
                                     <div class="col-4 my-2">
                                         <i class='bx bxs-book-content'></i>
-                                        <b>PinCode:</b>
+                                        <b>Doctor:</b>
                                     </div>
                                     <div class="col-8">
-                                        <input asp-for="PinCode" class="form-control" />
-                                        <span asp-validation-for="PinCode" class="text-danger"></span>
+                                        <input asp-for="Doctor" class="form-control" />
+                                        <span asp-validation-for="Doctor" class="text-danger"></span>
                                     </div>
                                 </div>
 
+                                <div class="form-group row my-3">
+                                    <div class="col-4 my-2">
+                                        <i class='bx bxs-book-content'></i>
+                                        <b>Patient:</b>
+                                    </div>
+                                    <div class="col-8">
+                                        <input asp-for="Patient" class="form-control" />
+                                        <span asp-validation-for="Patient" class="text-danger"></span>
+                                    </div>
+
+                                </div>
                                 <div class="form-group row my-4">
                                     <div class="col-4">
                                         <a class="btn btn-outline-dark" asp-action="Index">Back to list</a>
@@ -104,16 +115,3 @@
     </div>
 </body>
 
-
-@section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $('#single-select').select2({
-            maximumSelectionLength: 10,
-            placeholder: 'Select an option'
-        });
-    </script>
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

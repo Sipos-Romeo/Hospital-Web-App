@@ -41,7 +41,7 @@ namespace Hospital.Services
 
         public void UpdateContact(Contact contact)
         {
-            _repositoryWrapper.HospitalInfoRepository.Update(contact);
+            _repositoryWrapper.ContactRepository.Update(contact);
             _repositoryWrapper.Save();
         }
     }

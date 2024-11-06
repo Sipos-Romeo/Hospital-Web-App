@@ -1,25 +1,22 @@
 ﻿using Hospital.Models;
-using Hospital.Services;
 using Hospital.Services.Interfaces;
-using Hospital.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace Hospital.Web.Controllers
 {
-    public class AppointmentsController : Controller
+    public class ContactsController : Controller
     {
-        private readonly IAppointmentService _appointmentService;
+        private readonly IContactServices _contactServices;
 
-        public AppointmentsController(IAppointmentService appointmentService)
+        public ContactsController(IContactServices contactServices)
         {
-            _appointmentService = appointmentService;
+            _contactServices = contactServices;
         }
 
         public IActionResult Index()
         {
-            return View(_appointmentService.GetAllAppointment());
+            return View(_contactServices.GetAllContact());
         }
 
         public IActionResult Create()
@@ -29,21 +26,19 @@ namespace Hospital.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] Appointment appointment)
+        public IActionResult Create([FromForm] Contact contact)
         {
-            // search for doctor/pacient
-            // if either of them is not found, reject
             if (ModelState.IsValid)
             {
-                _appointmentService.CreateAppointment(appointment);
+                _contactServices.CreateContact(contact);
                 return RedirectToAction(nameof(Index));
             }
-            return View(appointment);
+            return View(contact);
         }
 
         public IActionResult Delete(int id)
         {
-            var item = _appointmentService.GetAppointmentById(id);
+            var item = _contactServices.GetContactById(id);
             if (item == null)
             {
                 return NotFound();
@@ -56,13 +51,13 @@ namespace Hospital.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            _appointmentService.DeleteAppointment(_appointmentService.GetAppointmentById(id));
+            _contactServices.DeleteContact(_contactServices.GetContactById(id));
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Edit(int id)
         {
-            var item = _appointmentService.GetAppointmentById(id);
+            var item = _contactServices.GetContactById(id);
             if (item == null)
             {
                 return NotFound();
@@ -72,9 +67,9 @@ namespace Hospital.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Appointment appointment)
+        public IActionResult Edit(int id, Contact contact)
         {
-            if (id != appointment.Id)
+            if (id != contact.Id)
             {
                 return NotFound();
             }
@@ -83,18 +78,18 @@ namespace Hospital.Web.Controllers
             {
                 try
                 {
-                    _appointmentService.UpdateAppointment(appointment);
+                    _contactServices.UpdateContact(contact);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(appointment);
+            return View(contact);
         }
         public IActionResult Details(int id)
         {
-            var item = _appointmentService.GetAppointmentById(id);
+            var item = _contactServices.GetContactById(id);
 
             if (item == null)
             {
@@ -103,8 +98,5 @@ namespace Hospital.Web.Controllers
 
             return View(item);
         }
-
     }
 }
-
-    

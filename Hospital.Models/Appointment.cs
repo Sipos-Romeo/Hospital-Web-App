@@ -1,4 +1,5 @@
 ﻿using Hospital.Models.TBA;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hospital.Models
 {
@@ -9,7 +10,9 @@ namespace Hospital.Models
         public string Type { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Description { get; set;}
-        public ApplicationUser Doctor { get; set;}
-        public ApplicationUser Patient { get; set;}
+        [NotMapped]
+        public ApplicationUser? Doctor { get; set;} // string
+        [NotMapped]
+        public ApplicationUser? Patient { get; set;} // string
     }
 }

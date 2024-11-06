@@ -10,10 +10,6 @@ namespace Hospital.Repositories.Interfaces
 {
     public interface IDeparmentRepository : IRepositoryBase<Department>
     {
-        void Update(Department department);
-        void Create(Department department);
-        void Delete(Department department);
         Department GetDepartmenById(int id);
-        Department GetContactById(int id);
     }
 }

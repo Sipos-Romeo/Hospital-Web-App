@@ -1,0 +1,50 @@
+﻿@using Hospital.Services
+@model IEnumerable<Hospital.Models.Contact>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>Contact Information</h4>
+            <span class="ml-1">Your contact informations</span>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <a class="btn btn-rounded btn-primary" asp-action="Create">
+            <span class="btn-icon-left text-dark">
+                <i class="fa fa-plus color-primary"></i>
+            </span> Create
+        </a>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        @foreach (var hospitalInfo in Model)
+        {
+            <div class="col-md-4">
+                <div class="card testimonial-card mt-2 mb-3">
+                    <div class="card-body text-center">
+                        <hr />
+                        <div class="text-muted">@hospitalInfo.HospitalId</div>
+                        <p>@hospitalInfo.Id</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-center">
+                        <a class="text-muted mx-3" asp-action="Edit" asp-route-id="@hospitalInfo.Id">
+                            <i class='bx bxs-edit-alt'></i> Edit
+                        </a>
+                        <a class="text-muted mx-3" asp-action="Details" asp-route-id="@hospitalInfo.Id">
+                            <i class='bx bxs-detail'></i> Details
+                        </a>
+                        <a class="text-danger mx-3" asp-action="Delete" asp-route-id="@hospitalInfo.Id">
+                            <i class='bx bxs-trash'></i> Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

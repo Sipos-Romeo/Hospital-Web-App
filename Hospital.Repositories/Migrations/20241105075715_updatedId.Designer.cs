@@ -4,6 +4,7 @@ using Hospital.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital.Repositories.Migrations
 {
     [DbContext(typeof(HospitalAppDbContext))]
-    partial class HospitalAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241105075715_updatedId")]
+    partial class updatedId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,7 +78,7 @@ namespace Hospital.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("HospitalInfoId")
+                    b.Property<int>("HospitalInfoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Phone")
@@ -508,7 +510,9 @@ namespace Hospital.Repositories.Migrations
                 {
                     b.HasOne("Hospital.Models.HospitalInfo", "HospitalInfo")
                         .WithMany("Contacts")
-                        .HasForeignKey("HospitalInfoId");
+                        .HasForeignKey("HospitalInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("HospitalInfo");
                 });

@@ -8,6 +8,7 @@ namespace Hospital.Models.TBA
 {
     public class ApplicationUser
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public Gender Gender { get; set; }
         public string Nationality { get; set; }

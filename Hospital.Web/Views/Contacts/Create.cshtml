@@ -1,0 +1,91 @@
+﻿@using Hospital.Services;
+@model Hospital.Models.Contact
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>Create</h4>
+            <span class="ml-1">New Contact</span>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-8 col-lg-8">
+            <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body text-center">
+                    <div class="avatar-simple mx-auto mb-1 mt-2">
+                        <i class="bi bi-hospital"></i>
+                    </div>
+                    <h4>Contact</h4>
+                    <hr />
+                    <div class="text-left p-3 text-dark">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <!-- Hospital Name -->
+                            <div class="form-group row my-3">
+                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Hospital Name:</b></label>
+                                <div class="col-8">
+                                    <input asp-for="HospitalId" class="form-control" />
+                                    <span asp-validation-for="HospitalId" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group row my-3">
+                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Email:</b></label>
+                                <div class="col-8">
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Hospital Information -->
+                            <div class="form-group row my-3">
+                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Hospital Information:</b></label>
+                                <div class="col-8">
+                                    <input asp-for="HospitalInfo" class="form-control" />
+                                    <span asp-validation-for="HospitalInfo" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="form-group row my-3">
+                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Phone:</b></label>
+                                <div class="col-8">
+                                    <input asp-for="Phone" class="form-control" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="form-group row my-3">
+                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Phone Number:</b></label>
+                                <div class="col-8">
+                                    <input asp-for="PhoneNumber" class="form-control" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="form-group row my-4">
+                                <div class="col-4">
+                                    <a class="btn btn-outline-dark" asp-action="Index">Back to list</a>
+                                </div>
+                                <div class="col-8 text-right">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

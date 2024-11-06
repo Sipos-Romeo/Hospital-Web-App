@@ -1,42 +1,44 @@
 ﻿@using Hospital.Services;
 
-@model Hospital.Models.HospitalInfo
+@model Hospital.Models.Room
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
 }
-<link href="/css/card.css" rel="stylesheet" />
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
         <div class="welcome-text">
-            <h4>Details</h4>
-            <span class="ml-1"></span>
+            <h4>Delete</h4>
+            <span class="ml-1"> Delete Hospital Info </span>
         </div>
     </div>
 </div>
+
 
 <body class="vh-10">
     <div class="container py-5 h-10">
         <div class="row d-flex justify-content-center align-items-center h-10">
             <div class="col-md-8 col-lg-8">
-                <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
                     <div class="card-body text-center">
-                        <h3 class="mb-5">Name</h3>
+
+                        <h3 class="mb-5 text-danger">Delete Hospital info?</h3>
                         <hr />
                         <div class="container">
                             <div class="text-left text-dark">
+                                
                                 <div class="row">
                                     <div class="col">
                                         <i class='bx bxs-category'></i>
-                                        <b>Name</b>
+                                        <b>Room Number</b>
                                     </div>
                                     <div class="col">
-                                        @Html.DisplayFor(model => model.Name)
+                                        @Html.DisplayFor(model => model.RoomNumber)
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                 <div class="row">
                                     <div class="col">
                                         <i class='bx bxs-category'></i>
                                         <b>Type</b>
@@ -46,13 +48,23 @@
                                     </div>
                                 </div>
 
+                                 <div class="row">
+                                    <div class="col">
+                                        <i class='bx bxs-category'></i>
+                                        <b>HospitalId</b>
+                                    </div>
+                                    <div class="col">
+                                        @Html.DisplayFor(model => model.HospitalId)
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col">
                                         <i class='bx bxs-category'></i>
-                                        <b>City</b>
+                                        <b>Hospital Info</b>
                                     </div>
                                     <div class="col">
-                                        @Html.DisplayFor(model => model.City)
+                                        @Html.DisplayFor(model => model.HospitalInfo)
                                     </div>
                                 </div>
 
@@ -60,13 +72,14 @@
                         </div>
 
                         <hr class="my-4">
-                        <a class="btn btn-lg btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-                        <a class="btn btn-lg btn-outline-dark" asp-action="Index">Back to list</a>
-
+                        <form asp-action="Delete">
+                            <a class="btn btn-outline-dark" asp-action="Index">Back to list</a> 
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value=Delete class="btn btn-danger" />
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-

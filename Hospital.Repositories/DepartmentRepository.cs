@@ -13,6 +13,7 @@ namespace Hospital.Repositories
         public DepartmentRepository(HospitalAppDbContext hospitalAppDbContext) : base(hospitalAppDbContext)
         {
         }
+
         public Department GetDepartmenById(int id)
         {
            return _hospitalAppDbContext.Departments.Where(c=>c.Id == id).FirstOrDefault() ?? new Department();

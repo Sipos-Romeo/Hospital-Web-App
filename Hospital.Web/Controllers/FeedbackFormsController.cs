@@ -1,25 +1,24 @@
 ﻿using Hospital.Models;
 using Hospital.Services;
 using Hospital.Services.Interfaces;
-using Hospital.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace Hospital.Web.Controllers
 {
-    public class AppointmentsController : Controller
+    public class FeedbackFormsController : Controller
     {
-        private readonly IAppointmentService _appointmentService;
+        
+        private readonly IFeedbackFormService _feedbackFormService;
 
-        public AppointmentsController(IAppointmentService appointmentService)
+        public FeedbackFormsController(IFeedbackFormService feedbackFormService)
         {
-            _appointmentService = appointmentService;
+            _feedbackFormService = feedbackFormService;
         }
 
         public IActionResult Index()
         {
-            return View(_appointmentService.GetAllAppointment());
+            return View(_feedbackFormService.GetAllFeedbackForm());
         }
 
         public IActionResult Create()
@@ -29,21 +28,19 @@ namespace Hospital.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] Appointment appointment)
+        public IActionResult Create([FromForm] FeedbackForm feedbackForm)
         {
-            // search for doctor/pacient
-            // if either of them is not found, reject
             if (ModelState.IsValid)
             {
-                _appointmentService.CreateAppointment(appointment);
+                _feedbackFormService.CreateFeedbackForm(feedbackForm);
                 return RedirectToAction(nameof(Index));
             }
-            return View(appointment);
+            return View(feedbackForm);
         }
 
         public IActionResult Delete(int id)
         {
-            var item = _appointmentService.GetAppointmentById(id);
+            var item = _feedbackFormService.GetFeedbackFormById(id);
             if (item == null)
             {
                 return NotFound();
@@ -56,13 +53,13 @@ namespace Hospital.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            _appointmentService.DeleteAppointment(_appointmentService.GetAppointmentById(id));
+            _feedbackFormService.DeleteFeedbackForm(_feedbackFormService.GetFeedbackFormById(id));
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Edit(int id)
         {
-            var item = _appointmentService.GetAppointmentById(id);
+            var item = _feedbackFormService.GetFeedbackFormById(id);
             if (item == null)
             {
                 return NotFound();
@@ -72,9 +69,9 @@ namespace Hospital.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Appointment appointment)
+        public IActionResult Edit(int id, FeedbackForm feedbackForm)
         {
-            if (id != appointment.Id)
+            if (id != feedbackForm.Id)
             {
                 return NotFound();
             }
@@ -83,18 +80,18 @@ namespace Hospital.Web.Controllers
             {
                 try
                 {
-                    _appointmentService.UpdateAppointment(appointment);
+                    _feedbackFormService.UpdateFeedbackForm(feedbackForm);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(appointment);
+            return View(feedbackForm);
         }
         public IActionResult Details(int id)
         {
-            var item = _appointmentService.GetAppointmentById(id);
+            var item = _feedbackFormService.GetFeedbackFormById(id);
 
             if (item == null)
             {
@@ -107,4 +104,3 @@ namespace Hospital.Web.Controllers
     }
 }
 
-    

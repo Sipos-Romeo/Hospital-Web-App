@@ -39,7 +39,7 @@ namespace Hospital.Services
 
         public Department GetDepartmentById(int id)
         {
-            return _repositoryWrapper.DeparmentRepository.GetContactById(id);
+            return _repositoryWrapper.DeparmentRepository.GetDepartmenById(id);
         }
 
         public void UpdateDepartment(Department department)

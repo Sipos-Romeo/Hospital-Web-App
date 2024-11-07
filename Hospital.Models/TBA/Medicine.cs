@@ -9,11 +9,11 @@ namespace Hospital.Models.TBA
     public class Medicine
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Cost { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
-        public ICollection<MedicineReport> MedicineReports { get; set; }
-        public ICollection<PrescribedMedicine> PrescribedMedicine { get; set; }
+        public string? Name { get; set; }
+        public string? Cost { get; set; }
+        public string? Type { get; set; }
+        public string? Description { get; set; }
+        public ICollection<MedicineReport>? MedicineReports { get; set; }
+        public ICollection<PrescribedMedicine>? PrescribedMedicine { get; set; }
     }
 }

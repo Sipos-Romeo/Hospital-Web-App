@@ -24,7 +24,7 @@ namespace Hospital.Services
 
         public void DeleteFeedbackForm(FeedbackForm feedbackForm)
         {
-            _repositoryWrapper.FeedbackFormRepository.Create(feedbackForm);
+            _repositoryWrapper.FeedbackFormRepository.Delete(feedbackForm);
             _repositoryWrapper.Save();
         }
 

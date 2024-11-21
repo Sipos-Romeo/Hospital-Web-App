@@ -17,11 +17,11 @@ namespace Hospital.Models
         public DateTime CreatedDate { get; set; }
 
         [MaxLength(500)]
-        public string? Description { get; set; }
+        public Guid? Description { get; set; }
 
         // Foreign Key for Doctor
         [Required]
-        public int? DoctorId { get; set; }
+        public Guid? DoctorId { get; set; }
         [ForeignKey(nameof(DoctorId))]
         public virtual ApplicationUser? Doctor { get; set; }
 

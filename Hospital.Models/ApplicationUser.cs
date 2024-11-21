@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospital.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser<Guid>
     {
-        public int Id { get; set; }
-        // Additional properties for your application
         [Required]
         [MaxLength(100)]
         public string? FullName { get; set; }
@@ -23,6 +22,8 @@ namespace Hospital.Models
 
     public enum Gender
     {
-        Male, Female, Other
+        Male,
+        Female,
+        Other
     }
 }

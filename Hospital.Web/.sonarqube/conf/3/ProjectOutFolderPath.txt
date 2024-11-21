@@ -1,1 +1,0 @@
-F:\Hospital-Web-App\Hospital.Web\.sonarqube\out\3

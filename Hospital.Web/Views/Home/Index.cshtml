@@ -4,23 +4,21 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <a asp-area="Identity" asp-page="/Account/Login">Login</a>
-    <a asp-area="Identity" asp-page="/Account/Register">Register</a>
-    <a asp-area="Identity" asp-page="/Account/Register">Register</a> TO DO
-    <a asp-controller="HospitalInfoes" class="btn btn-lg btn-outline-dark" asp-action="Index">Hospital info</a>
-    @if (!User.Identity.IsAuthenticated)
-    {
-        <span>New user</span>
-    }
-    else
-    {
-        <span>@User.Identity.Name</span>
-    }
 
+    <br />
+    <br />
+    <br />
+
+    <div class="d-flex flex-wrap justify-content-center mt-4">
+        <a asp-controller="HospitalInfoes" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Hospital Info</a>
+        <a asp-controller="Appointments" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Appointments</a>
+        <a asp-controller="Contacts" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Contacts</a>
+        <a asp-controller="Departments" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Department</a>
+        <a asp-controller="FeedbackForms" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Feedback Form</a>
+        <a asp-controller="Rooms" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Rooms</a>
+    </div>
 </div>
-<div> TO DO
-    <h1 class="display-4">Welcome</h1>
-    <h1 class="display-4">Welcome</h1>
-</div>
+
+
+
 

@@ -39,6 +39,21 @@ builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
 builder.Services.AddScoped<IHospitalInfoRepository, HospitalInfoRepository>();
 builder.Services.AddScoped<IHospitalInfoService, HospitalInfoService>();
+
+builder.Services.AddScoped<IFeedbackFormRepository, FeedbackFormRepository>();
+builder.Services.AddScoped<IFeedbackFormService, FeedbackFormService>();
+
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IContactServices, ContactService>();
+
+builder.Services.AddScoped<IDeparmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<IRoomService, RoomService>();
 #endregion
 
 var app = builder.Build();

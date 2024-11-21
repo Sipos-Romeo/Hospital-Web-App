@@ -23,9 +23,6 @@
             <div class="col-md-8 col-lg-8">
                 <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
                     <div class="card-body text-center">
-                        <div class="avatar-simple mx-auto mb-1 mt-2 white">
-                            <img src="https://cdn-icons-png.flaticon.com/128/8148/8148510.png" class=" img-fluid" alt="woman avatar">
-                        </div>
                         <h4>"ContactInfo"</h4>
                         <hr />
                         <div class="text-left p-3 text-dark">
@@ -64,6 +61,28 @@
                                     <div class="col-8">
                                         <input asp-for="City" class="form-control" />
                                         <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row my-3">
+                                    <div class="col-4 my-2">
+                                        <i class='bx bxs-book-content'></i>
+                                        <b>Country:</b>
+                                    </div>
+                                    <div class="col-8">
+                                        <input asp-for="Country" class="form-control" />
+                                        <span asp-validation-for="Country" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row my-3">
+                                    <div class="col-4 my-2">
+                                        <i class='bx bxs-book-content'></i>
+                                        <b>PinCode:</b>
+                                    </div>
+                                    <div class="col-8">
+                                        <input asp-for="PinCode" class="form-control" />
+                                        <span asp-validation-for="PinCode" class="text-danger"></span>
                                     </div>
                                 </div>
 

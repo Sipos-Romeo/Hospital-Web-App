@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Hospital.Models.TBA;
 
 namespace Hospital.Models
 {
     public class Department
     {
         public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public ICollection<ApplicationUser>? Employees { get; set; }
 
+        [Required]
+        [MaxLength(100)]
+        public string? Name { get; set; }
+
+        public string? Description { get; set; }
+
+        // Many-to-Many with ApplicationUser
+        public virtual ICollection<ApplicationUser>? Employees { get; set; }
     }
+
 }

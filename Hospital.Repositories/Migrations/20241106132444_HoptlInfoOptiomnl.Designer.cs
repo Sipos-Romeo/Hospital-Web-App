@@ -74,7 +74,7 @@ namespace Hospital.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HospitalId")
+                    b.Property<string>("HospitalInfoId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -190,7 +190,7 @@ namespace Hospital.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("HospitalId")
+                    b.Property<int>("HospitalInfoId")
                         .HasColumnType("int");
 
                     b.Property<int>("HospitalInfoId")

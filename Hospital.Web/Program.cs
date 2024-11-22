@@ -6,13 +6,14 @@ using Hospital.Repositories.Interfaces;
 using Hospital.Services.Interfaces;
 using Hospital.Services;
 using Hospital.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<HospitalAppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<HospitalAppDbContext>()
     .AddDefaultTokenProviders();
 
@@ -56,6 +57,14 @@ builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 #endregion
+
+builder.Services.AddTransient<IEmailSender>(sp =>
+    new SmtpEmailSender(
+        smtpServer: "smtp.example.com",
+        smtpPort: 587,
+        smtpUser: "your-email@example.com",
+        smtpPass: "your-password"
+    ));
 
 var app = builder.Build();
 

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Hospital.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace Hospital.Repositories
 {
@@ -35,5 +35,4 @@ namespace Hospital.Repositories
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
-
 }

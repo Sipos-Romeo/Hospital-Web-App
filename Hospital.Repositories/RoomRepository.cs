@@ -1,9 +1,4 @@
-﻿using Moq;
-using Xunit;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Hospital.Models;
+﻿using Hospital.Models;
 using Hospital.Repositories.Interfaces;
 using Hospital.Repositories;
 

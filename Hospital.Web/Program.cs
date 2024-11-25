@@ -7,6 +7,7 @@ using Hospital.Services.Interfaces;
 using Hospital.Services;
 using Hospital.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using HospitalApp.Tests.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

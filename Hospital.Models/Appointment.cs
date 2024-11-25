@@ -21,15 +21,14 @@ namespace Hospital.Models
 
         // Foreign Key for Doctor
         [Required]
-        public int? DoctorId { get; set; }
+        public Guid? DoctorId { get; set; }
         [ForeignKey(nameof(DoctorId))]
         public virtual ApplicationUser? Doctor { get; set; }
 
         // Foreign Key for Patient
         [Required]
-        public int? PatientId { get; set; }
+        public Guid? PatientId { get; set; }
         [ForeignKey(nameof(PatientId))]
         public virtual ApplicationUser? Patient { get; set; }
     }
-
 }

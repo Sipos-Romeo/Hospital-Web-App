@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Hospital.Repositories
 {
     public class ContactRepository : RepositoryBase<Contact>, IContactRepository
@@ -13,7 +12,6 @@ namespace Hospital.Repositories
         public ContactRepository(HospitalAppDbContext hospitalAppDbContext) : base(hospitalAppDbContext)
         {
         }
-
         public Contact GetContactById(int id)
         {
             return _hospitalAppDbContext.Contacts.Where(c => c.Id == id).FirstOrDefault() ?? new Contact();

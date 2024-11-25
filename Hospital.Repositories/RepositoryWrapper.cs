@@ -1,4 +1,5 @@
 ﻿using Hospital.Repositories.Interfaces;
+using HospitalApp.Tests.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System;

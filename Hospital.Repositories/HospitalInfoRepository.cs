@@ -6,6 +6,7 @@ namespace Hospital.Repositories
 {
     public class HospitalInfoRepository : RepositoryBase<HospitalInfo>, IHospitalInfoRepository
     {
+    
         public HospitalInfoRepository(HospitalAppDbContext hospitalAppDbContext) : base(hospitalAppDbContext)
         {
         }

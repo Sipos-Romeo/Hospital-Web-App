@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Hospital.Repositories
 {
     public class DepartmentRepository : RepositoryBase<Department>, IDeparmentRepository
@@ -13,10 +12,9 @@ namespace Hospital.Repositories
         public DepartmentRepository(HospitalAppDbContext hospitalAppDbContext) : base(hospitalAppDbContext)
         {
         }
-
         public Department GetDepartmenById(int id)
         {
-           return _hospitalAppDbContext.Departments.Where(c=>c.Id == id).FirstOrDefault() ?? new Department();
+            return _hospitalAppDbContext.Departments.Where(c => c.Id == id).FirstOrDefault() ?? new Department();
         }
     }
 }

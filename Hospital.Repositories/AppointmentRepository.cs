@@ -14,7 +14,8 @@ namespace Hospital.Repositories
         }
         public Appointment GetAppointmentById(int id)
         {
-            return _hospitalAppDbContext.Appointments.Where(c => c.Id == id).FirstOrDefault() ?? new Appointment();
+            return _hospitalAppDbContext.Appointments?.Where(c => c.Id == id).FirstOrDefault() ?? new Appointment();
         }
+
     }
 }

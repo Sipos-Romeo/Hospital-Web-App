@@ -14,7 +14,7 @@ namespace Hospital.Repositories
         }
         public Department GetDepartmenById(int id)
         {
-            return _hospitalAppDbContext.Departments.Where(c => c.Id == id).FirstOrDefault() ?? new Department();
+            return _hospitalAppDbContext.Departments?.Where(c => c.Id == id).FirstOrDefault() ?? new Department();
         }
     }
 }

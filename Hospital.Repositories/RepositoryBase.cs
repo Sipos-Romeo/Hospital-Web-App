@@ -15,31 +15,36 @@ namespace Hospital.Repositories
 
         public IQueryable<T> FindAll()
         {
-            return this._hospitalAppDbContext.Set<T>();
+            return _hospitalAppDbContext.Set<T>() ?? Enumerable.Empty<T>().AsQueryable();
         }
 
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
         {
-            return this._hospitalAppDbContext.Set<T>().Where(expression);
+            return _hospitalAppDbContext.Set<T>().Where(expression);
         }
+
         public T GetByCondition(Expression<Func<T, bool>> expression)
         {
-            return this._hospitalAppDbContext.Set<T>().Where(expression).FirstOrDefault();
+            var result = _hospitalAppDbContext.Set<T>().Where(expression).FirstOrDefault();
+            if (result == null)
+                throw new InvalidOperationException("Entity not found.");
+            return result;
         }
+
 
         public void Create(T entity)
         {
-            this._hospitalAppDbContext.Set<T>().Add(entity);
+            _hospitalAppDbContext.Set<T>().Add(entity);
         }
 
         public void Update(T entity)
         {
-            this._hospitalAppDbContext.Set<T>().Update(entity);
+            _hospitalAppDbContext.Set<T>().Update(entity);
         }
 
         public void Delete(T entity)
         {
-            this._hospitalAppDbContext.Set<T>().Remove(entity);
+            _hospitalAppDbContext.Set<T>().Remove(entity);
         }
     }
 }

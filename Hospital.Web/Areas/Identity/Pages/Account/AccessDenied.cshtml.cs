@@ -18,6 +18,7 @@ namespace Hospital.Web.Areas.Identity.Pages.Account
         /// </summary>
         public void OnGet()
         {
+            // Method intentionally left empty.
         }
     }
 }

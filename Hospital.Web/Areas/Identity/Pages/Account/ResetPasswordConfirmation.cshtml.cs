@@ -20,6 +20,7 @@ namespace Hospital.Web.Areas.Identity.Pages.Account
         /// </summary>
         public void OnGet()
         {
+            throw new NotSupportedException();
         }
     }
 }

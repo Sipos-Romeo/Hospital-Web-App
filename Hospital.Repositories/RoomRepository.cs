@@ -9,9 +9,15 @@ namespace HospitalApp.Tests.Repositories
         public RoomRepository(HospitalAppDbContext hospitalAppDbContext) : base(hospitalAppDbContext)
         {
         }
+
+        public IEnumerable<Room> GetAllRooms()
+        {
+            return _hospitalAppDbContext.Rooms.ToList();
+        }
+
         public Room GetRoomById(int id)
         {
-            return _hospitalAppDbContext.Rooms.Where(c => c.Id == id).FirstOrDefault() ?? new Room();
+            return _hospitalAppDbContext.Rooms?.Where(c => c.Id == id).FirstOrDefault() ?? new Room();
         }
     }
 }

@@ -8,99 +8,97 @@ namespace Hospital.Web.Controllers
 {
     public class RoomsController : Controller
     {
-        
-            private readonly IRoomService _roomService;
 
-            public RoomsController(IRoomService roomService)
-            {
+        private readonly IRoomService _roomService;
+
+        public RoomsController(IRoomService roomService)
+        {
             _roomService = roomService;
-            }
+        }
 
-            public IActionResult Index()
-            {
-                return View(_roomService.GetAllRoom());
-            }
+        public IActionResult Index()
+        {
+            return View(_roomService.GetAllRooms());
+        }
 
-            public IActionResult Create()
-            {
-                return View();
-            }
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            public IActionResult Create([FromForm] Room room)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([FromForm] Room room)
+        {
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
                 _roomService.CreateRoom(room);
-                    return RedirectToAction(nameof(Index));
-                }
-                return View(room);
-            }
-
-            public IActionResult Delete(int id)
-            {
-                var item = _roomService.GetRoomById(id);
-                if (item == null)
-                {
-                    return NotFound();
-                }
-
-                return View(item);
-            }
-
-            [HttpPost, ActionName("Delete")]
-            [ValidateAntiForgeryToken]
-            public IActionResult DeleteConfirmed(int id)
-            {
-            _roomService.DeleteRoom(_roomService.GetRoomById(id));
                 return RedirectToAction(nameof(Index));
             }
+            return View(room);
+        }
 
-            public IActionResult Edit(int id)
+        public IActionResult Delete(int id)
+        {
+            var item = _roomService.GetRoomById(id);
+            if (item == null)
             {
-                var item = _roomService.GetRoomById(id);
-                if (item == null)
-                {
-                    return NotFound();
-                }
-                return View(item);
+                return NotFound();
             }
 
-            [HttpPost]
-            [ValidateAntiForgeryToken]
-            public IActionResult Edit(int id, Room room)
-            {
-                if (id != room.Id)
-                {
-                    return NotFound();
-                }
+            return View(item);
+        }
 
-                if (ModelState.IsValid)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _roomService.DeleteRoom(_roomService.GetRoomById(id));
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var item = _roomService.GetRoomById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Room room)
+        {
+            if (id != room.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    try
-                    {
                     _roomService.UpdateRoom(room);
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                    }
-                    return RedirectToAction(nameof(Index));
                 }
-                return View(room);
-            }
-            public IActionResult Details(int id)
-            {
-                var item = _roomService.GetRoomById(id);
-
-                if (item == null)
+                catch (DbUpdateConcurrencyException)
                 {
-                    return NotFound();
                 }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(room);
+        }
+        public IActionResult Details(int id)
+        {
+            var item = _roomService.GetRoomById(id);
 
-                return View(item);
+            if (item == null)
+            {
+                return NotFound();
             }
 
+            return View(item);
         }
     }
-
+}

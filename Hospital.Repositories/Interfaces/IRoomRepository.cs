@@ -10,6 +10,8 @@ namespace Hospital.Repositories.Interfaces
 {
     public interface IRoomRepository : IRepositoryBase<Room>
     {
+        IEnumerable<Room> GetAllRooms();
         Room GetRoomById(int id);
+
     }
 }

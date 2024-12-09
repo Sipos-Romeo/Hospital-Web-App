@@ -23,6 +23,12 @@
 	  <ProjectReference Include="..\Hospital.Repositories\Hospital.Repositories.csproj" />
 	  <ProjectReference Include="..\Hospital.Services\Hospital.Services.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Content Update="Views\Rooms\RoomDetails.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
 
 </Project>
  

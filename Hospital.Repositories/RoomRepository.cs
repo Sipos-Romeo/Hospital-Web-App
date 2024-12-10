@@ -1,6 +1,7 @@
 ﻿using Hospital.Models;
 using Hospital.Repositories.Interfaces;
 using Hospital.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalApp.Tests.Repositories
 {
@@ -17,7 +18,9 @@ namespace HospitalApp.Tests.Repositories
 
         public Room GetRoomById(int id)
         {
-            return _hospitalAppDbContext.Rooms?.Where(c => c.Id == id).FirstOrDefault() ?? new Room();
+            return _hospitalAppDbContext.Rooms?.Where(c => c.Id == id)
+                .Include(r => r.HospitalInfo)
+                .FirstOrDefault() ?? new Room();
         }
     }
 }

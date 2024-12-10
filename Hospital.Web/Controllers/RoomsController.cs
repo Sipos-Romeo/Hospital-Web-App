@@ -1,6 +1,7 @@
 ﻿using Hospital.Models;
 using Hospital.Services;
 using Hospital.Services.Interfaces;
+using Hospital.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,13 @@ namespace Hospital.Web.Controllers
     {
 
         private readonly IRoomService _roomService;
+        private readonly IHospitalInfoService _hospitalInfoService;
+        private string? item;
 
-        public RoomsController(IRoomService roomService)
+        public RoomsController(IRoomService roomService, IHospitalInfoService hospitalInfoService)
         {
             _roomService = roomService;
+            _hospitalInfoService = hospitalInfoService;
         }
 
         public IActionResult Index()
@@ -23,30 +27,39 @@ namespace Hospital.Web.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var hospitals = _hospitalInfoService.GetAllHospitalInfo(); 
+            var viewModel = new RoomViewModel
+            {
+                Hospitals = hospitals.Select(h => new KeyValuePair<int, string>(h.Id, h.Name)).ToList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] Room room)
+        public IActionResult Create([FromForm] RoomViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _roomService.CreateRoom(room);
-                return RedirectToAction(nameof(Index));
+                viewModel.Hospitals = _hospitalInfoService.GetAllHospitalInfo()
+                    .Select(h => new KeyValuePair<int, string>(h.Id, h.Name)).ToList();
+                return View(viewModel);
             }
-            return View(room);
+
+            _roomService.CreateRoom(viewModel.Room);
+
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id) 
         {
-            var item = _roomService.GetRoomById(id);
-            if (item == null)
+            var room = _roomService.GetRoomById(id);
+            if (room == null)
             {
                 return NotFound();
             }
-
-            return View(item);
+            return View(room);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -59,12 +72,20 @@ namespace Hospital.Web.Controllers
 
         public IActionResult Edit(int id)
         {
-            var item = _roomService.GetRoomById(id);
-            if (item == null)
+            var room = _roomService.GetRoomById(id);
+            if (room == null)
             {
                 return NotFound();
             }
-            return View(item);
+
+            var hospitals = _hospitalInfoService.GetAllHospitalInfo();
+            var viewModel = new RoomViewModel
+            {
+                Room = room,
+                Hospitals = hospitals.Select(h => new KeyValuePair<int, string>(h.Id, h.Name)).ToList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]

@@ -1,0 +1,17 @@
+﻿D:\Automation\HospitalApplication\Hospital.Models\ApplicationUser.cs
+D:\Automation\HospitalApplication\Hospital.Models\Appointment.cs
+D:\Automation\HospitalApplication\Hospital.Models\Contact.cs
+D:\Automation\HospitalApplication\Hospital.Models\Department.cs
+D:\Automation\HospitalApplication\Hospital.Models\FeedbackForm.cs
+D:\Automation\HospitalApplication\Hospital.Models\HospitalInfo.cs
+D:\Automation\HospitalApplication\Hospital.Models\Room.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\Bill.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\Insurance.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\Lab.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\Medicine.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\MedicineReport.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\PatientReport.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\Payroll.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\PrescribedMedicine.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\Supplier.cs
+D:\Automation\HospitalApplication\Hospital.Models\TBA\TestPrice.cs

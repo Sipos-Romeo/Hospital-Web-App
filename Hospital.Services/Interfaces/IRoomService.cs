@@ -13,6 +13,6 @@ namespace Hospital.Services.Interfaces
         void UpdateRoom(Room room);
         void DeleteRoom(Room room);
         Room GetRoomById(int id);
-        List<Room> GetAllRoom();
+        List<Room> GetAllRooms();
     }
 }

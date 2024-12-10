@@ -14,6 +14,7 @@ namespace Hospital.Repositories
     {
         private HospitalAppDbContext _hospitalAppDbContext;
 
+
         public RepositoryWrapper(HospitalAppDbContext hospitalAppDbContext)
         {
             _hospitalAppDbContext = hospitalAppDbContext;
@@ -24,7 +25,7 @@ namespace Hospital.Repositories
             _hospitalAppDbContext.SaveChanges();
         }
 
-        private IHospitalInfoRepository _hospitalInfoRepository;
+        private IHospitalInfoRepository? _hospitalInfoRepository;
         public IHospitalInfoRepository HospitalInfoRepository
         {
             get
@@ -36,7 +37,7 @@ namespace Hospital.Repositories
                 return _hospitalInfoRepository;
             }
         }
-        private IAppointmentRepository _appointmentRepository;
+        private IAppointmentRepository? _appointmentRepository;
         public IAppointmentRepository AppointmentRepository
         {
             get
@@ -49,7 +50,7 @@ namespace Hospital.Repositories
             }
         }
 
-        private IContactRepository _contactRepository;
+        private IContactRepository? _contactRepository;
         public IContactRepository ContactRepository
         {
             get
@@ -61,7 +62,7 @@ namespace Hospital.Repositories
                 return _contactRepository;
             }
         }
-        private IDeparmentRepository _deparmentRepository;
+        private IDeparmentRepository? _deparmentRepository;
         public IDeparmentRepository DeparmentRepository
         {
             get
@@ -73,7 +74,7 @@ namespace Hospital.Repositories
                 return _deparmentRepository;
             }
         }
-        private IFeedbackFormRepository _feedbackFormRepository;
+        private IFeedbackFormRepository? _feedbackFormRepository;
         public IFeedbackFormRepository FeedbackFormRepository
         {
             get
@@ -85,7 +86,7 @@ namespace Hospital.Repositories
                 return _feedbackFormRepository;
             }
         }
-        private IRoomRepository _roomRepository;
+        private IRoomRepository? _roomRepository;
         public IRoomRepository RoomRepository
         {
             get

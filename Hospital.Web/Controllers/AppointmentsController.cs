@@ -1,7 +1,5 @@
 ﻿using Hospital.Models;
-using Hospital.Services;
 using Hospital.Services.Interfaces;
-using Hospital.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -31,14 +29,13 @@ namespace Hospital.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([FromForm] Appointment appointment)
         {
-            // search for doctor/pacient
-            // if either of them is not found, reject
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _appointmentService.CreateAppointment(appointment);
-                return RedirectToAction(nameof(Index));
+                return View(appointment);
             }
-            return View(appointment);
+
+            _appointmentService.CreateAppointment(appointment);
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int id)
@@ -49,14 +46,23 @@ namespace Hospital.Web.Controllers
                 return NotFound();
             }
 
+            // Pass the item to a confirmation view.
             return View(item);
         }
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            _appointmentService.DeleteAppointment(_appointmentService.GetAppointmentById(id));
+            var item = _appointmentService.GetAppointmentById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            // Perform the deletion.
+            _appointmentService.DeleteAppointment(item);
             return RedirectToAction(nameof(Index));
         }
 
@@ -76,26 +82,31 @@ namespace Hospital.Web.Controllers
         {
             if (id != appointment.Id)
             {
-                return NotFound();
+                return BadRequest("ID mismatch.");
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _appointmentService.UpdateAppointment(appointment);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                }
-                return RedirectToAction(nameof(Index));
+                return View(appointment);
             }
-            return View(appointment);
+
+            try
+            {
+                _appointmentService.UpdateAppointment(appointment);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                Debug.WriteLine($"Concurrency exception: {ex.Message}");
+                ModelState.AddModelError("", "Unable to save changes. The record may have been modified or deleted.");
+                return View(appointment);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
+
         public IActionResult Details(int id)
         {
             var item = _appointmentService.GetAppointmentById(id);
-
             if (item == null)
             {
                 return NotFound();
@@ -103,8 +114,5 @@ namespace Hospital.Web.Controllers
 
             return View(item);
         }
-
     }
 }
-
-    

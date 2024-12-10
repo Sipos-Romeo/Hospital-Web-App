@@ -2,6 +2,7 @@
 using Hospital.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace Hospital.Web.Controllers
 {
@@ -28,12 +29,14 @@ namespace Hospital.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([FromForm] Contact contact)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _contactServices.CreateContact(contact);
-                return RedirectToAction(nameof(Index));
+                // Return view with validation errors.
+                return View(contact);
             }
-            return View(contact);
+
+            _contactServices.CreateContact(contact);
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int id)
@@ -44,6 +47,7 @@ namespace Hospital.Web.Controllers
                 return NotFound();
             }
 
+            // Render confirmation view.
             return View(item);
         }
 
@@ -51,7 +55,13 @@ namespace Hospital.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            _contactServices.DeleteContact(_contactServices.GetContactById(id));
+            var item = _contactServices.GetContactById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _contactServices.DeleteContact(item);
             return RedirectToAction(nameof(Index));
         }
 
@@ -62,6 +72,8 @@ namespace Hospital.Web.Controllers
             {
                 return NotFound();
             }
+
+            // Pass the item to the edit view.
             return View(item);
         }
 
@@ -71,26 +83,33 @@ namespace Hospital.Web.Controllers
         {
             if (id != contact.Id)
             {
-                return NotFound();
+                return BadRequest("ID mismatch.");
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _contactServices.UpdateContact(contact);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                }
-                return RedirectToAction(nameof(Index));
+                // Return view with validation errors.
+                return View(contact);
             }
-            return View(contact);
+
+            try
+            {
+                _contactServices.UpdateContact(contact);
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                // Log exception and add error to ModelState.
+                Debug.WriteLine($"Concurrency exception: {ex.Message}");
+                ModelState.AddModelError("", "Unable to save changes. The record may have been modified or deleted.");
+                return View(contact);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
+
         public IActionResult Details(int id)
         {
             var item = _contactServices.GetContactById(id);
-
             if (item == null)
             {
                 return NotFound();

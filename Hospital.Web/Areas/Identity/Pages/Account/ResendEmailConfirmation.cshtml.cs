@@ -53,6 +53,7 @@ namespace Hospital.Web.Areas.Identity.Pages.Account
 
         public void OnGet()
         {
+            // Method intentionally left empty.
         }
 
         public async Task<IActionResult> OnPostAsync()

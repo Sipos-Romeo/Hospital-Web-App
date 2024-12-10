@@ -14,7 +14,7 @@ namespace Hospital.Repositories
         }
         public FeedbackForm GetFeedbackFormById(int id)
         {
-            return _hospitalAppDbContext.FeedbackForms.Where(c => c.Id == id).FirstOrDefault() ?? new FeedbackForm();
+            return _hospitalAppDbContext.FeedbackForms?.Where(c => c.Id == id).FirstOrDefault() ?? new FeedbackForm();
         }
     }
 }

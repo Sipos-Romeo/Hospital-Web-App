@@ -13,7 +13,7 @@ namespace Hospital.Repositories
 
         public HospitalInfo GetHospitalById(int id)
         {
-            return _hospitalAppDbContext.HospitalInfo.Where(c => c.Id == id).FirstOrDefault() ?? new HospitalInfo();
+            return _hospitalAppDbContext.HospitalInfo?.Where(c => c.Id == id).FirstOrDefault() ?? new HospitalInfo();
         }
     }
 }

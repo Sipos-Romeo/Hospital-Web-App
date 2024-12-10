@@ -2,6 +2,7 @@
 using Hospital.Repositories.Interfaces;
 using Hospital.Services.Interfaces;
 using Hospital.Web.Repositories.Interfaces;
+using HospitalApp.Tests.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,8 @@ namespace Hospital.Services
             _repositoryWrapper.RoomRepository.Delete(room);
             _repositoryWrapper.Save();
         }
-
-        public List<Room> GetAllRoom()
+        
+        public List<Room> GetAllRooms()
         {
            return _repositoryWrapper.RoomRepository.FindAll().ToList();
         }

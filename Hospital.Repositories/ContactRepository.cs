@@ -14,7 +14,7 @@ namespace Hospital.Repositories
         }
         public Contact GetContactById(int id)
         {
-            return _hospitalAppDbContext.Contacts.Where(c => c.Id == id).FirstOrDefault() ?? new Contact();
+            return _hospitalAppDbContext.Contacts?.Where(c => c.Id == id).FirstOrDefault() ?? new Contact();
         }
     }
 }

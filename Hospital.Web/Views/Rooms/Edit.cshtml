@@ -1,6 +1,5 @@
 ﻿@using Hospital.Services;
-
-@model Hospital.Models.Room
+@model Hospital.ViewModels.RoomViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -29,7 +28,7 @@
                         <div class="text-left p-3 text-dark">
                             <form asp-action="Edit">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <input type="hidden" asp-for="Id" />
+                                <input type="hidden" asp-for="Room.Id" />
 
                                 <div class="form-group row my-3">
                                     <div class="col-4 my-2">
@@ -37,8 +36,8 @@
                                         <b>Room Number</b>
                                     </div>
                                     <div class="col-8">
-                                        <input asp-for="RoomNumber" class="form-control" />
-                                        <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                                        <input asp-for="Room.RoomNumber" class="form-control" />
+                                        <span asp-validation-for="Room.RoomNumber" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row my-3">
@@ -47,8 +46,8 @@
                                         <b>Type</b>
                                     </div>
                                     <div class="col-8">
-                                        <input asp-for="Type" class="form-control" />
-                                        <span asp-validation-for="Type" class="text-danger"></span>
+                                        <input asp-for="Room.Type" class="form-control" />
+                                        <span asp-validation-for="Room.Type" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row my-3">
@@ -57,19 +56,8 @@
                                         <b>Status</b>
                                     </div>
                                     <div class="col-8">
-                                        <input asp-for="Status" class="form-control" />
-                                        <span asp-validation-for="Status" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row my-3">
-                                    <div class="col-4 my-2">
-                                        <i class='bx bxs-book-content'></i>
-                                        <b>Hospital Id</b>
-                                    </div>
-                                    <div class="col-8">
-                                        <input asp-for="HospitalInfoId" class="form-control" />
-                                        <span asp-validation-for="HospitalInfoId" class="text-danger"></span>
+                                        <input asp-for="Room.Status" class="form-control" />
+                                        <span asp-validation-for="Room.Status" class="text-danger"></span>
                                     </div>
                                 </div>
 
@@ -79,8 +67,23 @@
                                         <b>Hospital Info</b>
                                     </div>
                                     <div class="col-8">
-                                        <input asp-for="HospitalInfo" class="form-control" />
-                                        <span asp-validation-for="HospitalInfo" class="text-danger"></span>
+                                        <select asp-for="Room.HospitalInfoId" class="form-select" id="HospitalDropdown">
+                                            <option value="">-- Select Hospital --</option>
+                                            @foreach (var hospital in Model.Hospitals)
+                                            {
+                                                @if (hospital.Key == Model.Room.HospitalInfoId)
+                                                {
+
+                                                    <option value="@hospital.Key" selected>@hospital.Value</option>
+                                                }
+                                                else
+                                                {
+
+                                                    <option value="@hospital.Key">@hospital.Value</option>
+                                                }
+                                            }
+                                        </select>
+                                        <span asp-validation-for="Room.HospitalInfo" class="text-danger"></span>
                                     </div>
                                 </div>
 

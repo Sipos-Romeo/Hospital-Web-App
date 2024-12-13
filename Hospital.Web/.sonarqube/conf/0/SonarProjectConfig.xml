@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SonarProjectConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/analyzer/2021/1">
   <AnalysisConfigPath>D:\Automation\HospitalApplication\Hospital.Web\.sonarqube\conf\SonarQubeAnalysisConfig.xml</AnalysisConfigPath>
-  <ProjectPath>D:\Automation\HospitalApplication\Hospitals.Utilities\Hospitals.Utilities.csproj</ProjectPath>
+  <ProjectPath>D:\Automation\HospitalApplication\Hospital.Models\Hospital.Models.csproj</ProjectPath>
   <FilesToAnalyzePath>D:\Automation\HospitalApplication\Hospital.Web\.sonarqube\conf\0\FilesToAnalyze.txt</FilesToAnalyzePath>
   <OutPath>D:\Automation\HospitalApplication\Hospital.Web\.sonarqube\out\0</OutPath>
   <ProjectType>Product</ProjectType>

@@ -13,7 +13,7 @@ namespace HospitalApp.Tests.Repositories
 
         public IEnumerable<Room> GetAllRooms()
         {
-            return _hospitalAppDbContext.Rooms.ToList();
+            return _hospitalAppDbContext.Rooms!.ToList();
         }
 
         public Room GetRoomById(int id)

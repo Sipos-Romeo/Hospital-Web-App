@@ -17,7 +17,6 @@ namespace Hospital.Models
 
         public string? Description { get; set; }
 
-        // Many-to-Many with ApplicationUser
         public virtual ICollection<ApplicationUser>? Employees { get; set; }
     }
 

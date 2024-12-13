@@ -16,7 +16,6 @@ namespace Hospital.Models
         public DateTime? DateOfBirth { get; set; }
         public Gender? Gender { get; set; }
 
-        // Relationships
         public virtual ICollection<Appointment>? AppointmentsAsDoctor { get; set; }
         public virtual ICollection<Appointment>? AppointmentsAsPatient { get; set; }
     }

@@ -188,5 +188,4 @@ D:\Automation\HospitalApplication\Hospital.Web\Views\_ViewStart.cshtml
 D:\Automation\HospitalApplication\Hospital.Web\Views\Shared\_Layout.cshtml.css
 D:\Automation\HospitalApplication\Hospital.Web\.editorconfig
 D:\Automation\HospitalApplication\Hospital.Web\ScaffoldingReadMe.txt
-D:\Automation\HospitalApplication\Hospital.Web\sonar-project.properties
 D:\Automation\HospitalApplication\Hospital.Web\Properties\launchSettings.json

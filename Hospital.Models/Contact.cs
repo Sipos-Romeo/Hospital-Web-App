@@ -6,7 +6,6 @@ namespace Hospital.Models
     {
         public int Id { get; set; }
 
-        // Foreign Key for HospitalInfo
         public int HospitalInfoId { get; set; }
         public virtual HospitalInfo? HospitalInfo { get; set; }
 

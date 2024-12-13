@@ -9,7 +9,7 @@ namespace Hospital.ViewModels
 {
     public class RoomViewModel
     {
-        public Room Room { get; set; }
+        public Room? Room { get; set; }
         public List<KeyValuePair<int, string>> Hospitals { get; set; } = new();
     }
 

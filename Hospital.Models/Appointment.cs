@@ -19,13 +19,13 @@ namespace Hospital.Models
         [MaxLength(500)]
         public string? Description { get; set; }
 
-        // Foreign Key for Doctor
+      
         [Required]
         public Guid? DoctorId { get; set; }
         [ForeignKey(nameof(DoctorId))]
         public virtual ApplicationUser? Doctor { get; set; }
 
-        // Foreign Key for Patient
+       
         [Required]
         public Guid? PatientId { get; set; }
         [ForeignKey(nameof(PatientId))]

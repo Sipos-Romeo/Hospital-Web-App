@@ -21,8 +21,8 @@ namespace Hospital.Models
         [MaxLength(50)]
         public string? Country { get; set; }
 
-        public virtual ICollection<Room>? Rooms { get; set; } // One-to-Many with Room
-        public virtual ICollection<Contact>? Contacts { get; set; } // One-to-Many with Contact
+        public virtual ICollection<Room>? Rooms { get; set; } 
+        public virtual ICollection<Contact>? Contacts { get; set; } 
     }
 
 }

@@ -16,10 +16,10 @@ namespace Hospital.Models
 
         public string? Status { get; set; }
 
-        // Foreign Key for HospitalInfo
         [Required(ErrorMessage = "Please select a hospital.")]
         public int HospitalInfoId { get; set; }
         public virtual HospitalInfo? HospitalInfo { get; set; }
+
     }
 
 }

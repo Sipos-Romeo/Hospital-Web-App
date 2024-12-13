@@ -1,5 +1,5 @@
 ﻿@using Hospital.Services
-@model Hospital.Models.Contact
+@model Hospital.ViewModels.ContactViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -30,18 +30,7 @@
 
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <input type="hidden" asp-for="Id" />
-
-                            <div class="form-group row my-3">
-                                <div class="col-4 my-2">
-                                    <i class='bx bxs-book-content'></i>
-                                    <b>Hospital Id</b>
-                                </div>
-                                <div class="col-8">
-                                    <input asp-for="HospitalInfoId" class="form-control" />
-                                    <span asp-validation-for="HospitalInfoId" class="text-danger"></span>
-                                </div>
-                            </div>
+                            <input type="hidden" asp-for="Contact.Id" />
 
                             <div class="form-group row my-3">
                                 <div class="col-4 my-2">
@@ -49,19 +38,8 @@
                                     <b>Email</b>
                                 </div>
                                 <div class="col-8">
-                                    <input asp-for="Email" class="form-control" />
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group row my-3">
-                                <div class="col-4 my-2">
-                                    <i class='bx bxs-book-content'></i>
-                                    <b>Hospital Info</b>
-                                </div>
-                                <div class="col-8">
-                                    <input asp-for="HospitalInfo" class="form-control" />
-                                    <span asp-validation-for="HospitalInfo" class="text-danger"></span>
+                                    <input asp-for="Contact.Email" class="form-control" />
+                                    <span asp-validation-for="Contact.Email" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -71,8 +49,8 @@
                                     <b>Phone</b>
                                 </div>
                                 <div class="col-8">
-                                    <input asp-for="Phone" class="form-control" />
-                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                    <input asp-for="Contact.Phone" class="form-control" />
+                                    <span asp-validation-for="Contact.Phone" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -82,8 +60,25 @@
                                     <b>Phone Number</b>
                                 </div>
                                 <div class="col-8">
-                                    <input asp-for="PhoneNumber" class="form-control" />
-                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                    <input asp-for="Contact.PhoneNumber" class="form-control" />
+                                    <span asp-validation-for="Contact.PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row my-3">
+                                <div class="col-4 my-2">
+                                    <i class='bx bxs-book-content'></i>
+                                    <b>Hospital Info</b>
+                                </div>
+                                <div class="col-8">
+                                    <select asp-for="Contact.HospitalInfoId" class="form-select" id="HospitalDropdown">
+                                        <option value="">-- Select Hospital --</option>
+                                        @foreach (var hospital in Model.Hospitals)
+                                        {
+                                            <option value="@hospital.Key">@hospital.Value</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="Contact.HospitalInfo" class="text-danger"></span>
                                 </div>
                             </div>
 

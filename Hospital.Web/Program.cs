@@ -59,6 +59,12 @@ builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 #endregion
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Home/Error"; // Path to your Error action
+});
+
+
 builder.Services.AddTransient<IEmailSender>(sp =>
     new SmtpEmailSender(
         smtpServer: "smtp.example.com",

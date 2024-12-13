@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hospital.Web.Controllers
 {
-    [Authorize]
+
+    [Authorize(Roles = "Admin")]
     public class HospitalInfoesController : Controller
     {
         private readonly IHospitalInfoService _hospitalInfoService;

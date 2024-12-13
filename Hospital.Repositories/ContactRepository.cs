@@ -1,5 +1,6 @@
 ﻿using Hospital.Models;
 using Hospital.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,9 @@ namespace Hospital.Repositories
         }
         public Contact GetContactById(int id)
         {
-            return _hospitalAppDbContext.Contacts?.Where(c => c.Id == id).FirstOrDefault() ?? new Contact();
+            return _hospitalAppDbContext.Contacts?.Where(c => c.Id == id)
+                .Include(h => h.HospitalInfo)
+                .FirstOrDefault() ?? new Contact();
         }
     }
 }

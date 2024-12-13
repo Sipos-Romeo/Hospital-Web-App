@@ -2,11 +2,13 @@
 using Hospital.Services;
 using Hospital.Services.Interfaces;
 using Hospital.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hospital.Web.Controllers
 {
+    [Authorize]
     public class RoomsController : Controller
     {
 

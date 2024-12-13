@@ -6,6 +6,7 @@ namespace Hospital.Models
     {
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Please select a hospital.")]
         public int HospitalInfoId { get; set; }
         public virtual HospitalInfo? HospitalInfo { get; set; }
 

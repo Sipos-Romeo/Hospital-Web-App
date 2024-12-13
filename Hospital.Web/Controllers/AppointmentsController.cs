@@ -1,11 +1,13 @@
 ﻿using Hospital.Models;
 using Hospital.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Hospital.Web.Controllers
 {
+    [Authorize]
     public class AppointmentsController : Controller
     {
         private readonly IAppointmentService _appointmentService;

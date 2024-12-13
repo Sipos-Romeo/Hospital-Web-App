@@ -1,18 +1,23 @@
 ﻿using Hospital.Models;
 using Hospital.Services.Interfaces;
+using Hospital.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Hospital.Web.Controllers
 {
+    [Authorize]
     public class ContactsController : Controller
     {
         private readonly IContactServices _contactServices;
+        private readonly IHospitalInfoService _hospitalInfoService;
 
-        public ContactsController(IContactServices contactServices)
+        public ContactsController(IContactServices contactServices, IHospitalInfoService hospitalInfoService)
         {
             _contactServices = contactServices;
+            _hospitalInfoService = hospitalInfoService;
         }
 
         public IActionResult Index()
@@ -22,59 +27,70 @@ namespace Hospital.Web.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var hospitals = _hospitalInfoService.GetAllHospitalInfo();
+            var viewModel = new ContactViewModel
+            {
+                Hospitals = hospitals.Select(h => new KeyValuePair<int, string>(h.Id, h.Name)).ToList()
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] Contact contact)
+        public IActionResult Create([FromForm] ContactViewModel contactVM)
         {
             if (!ModelState.IsValid)
             {
-                // Return view with validation errors.
-                return View(contact);
+                contactVM.Hospitals = _hospitalInfoService.GetAllHospitalInfo()
+                    .Select(h => new KeyValuePair<int, string>(h.Id, h.Name)).ToList();
+                return View(contactVM);
             }
 
-            _contactServices.CreateContact(contact);
+            _contactServices.CreateContact(contactVM.Contact);
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int id)
         {
-            var item = _contactServices.GetContactById(id);
-            if (item == null)
+            var contact = _contactServices.GetContactById(id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            // Render confirmation view.
-            return View(item);
+            return View(contact);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var item = _contactServices.GetContactById(id);
-            if (item == null)
+            var contact = _contactServices.GetContactById(id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            _contactServices.DeleteContact(item);
+            _contactServices.DeleteContact(contact);
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Edit(int id)
         {
-            var item = _contactServices.GetContactById(id);
-            if (item == null)
+            var contact = _contactServices.GetContactById(id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            // Pass the item to the edit view.
-            return View(item);
+            var hospitals = _hospitalInfoService.GetAllHospitalInfo();
+            var viewModel = new ContactViewModel
+            {
+                Contact = contact,
+                Hospitals = hospitals.Select(h => new KeyValuePair<int, string>(h.Id, h.Name)).ToList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]

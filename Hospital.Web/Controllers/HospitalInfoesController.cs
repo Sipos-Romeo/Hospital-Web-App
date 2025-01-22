@@ -17,9 +17,10 @@ namespace Hospital.Web.Controllers
             _hospitalInfoService = hospitalInfoService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString = "")
         {
-            return View(_hospitalInfoService.GetAllHospitalInfo());
+
+            return View(_hospitalInfoService.GetAllHospitalInfo(searchString));
         }
 
         public IActionResult Create()

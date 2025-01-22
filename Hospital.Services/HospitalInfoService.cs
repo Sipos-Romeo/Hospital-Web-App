@@ -32,8 +32,17 @@ namespace Hospital.Services
         }
 
 
-        public List<HospitalInfo> GetAllHospitalInfo()
+        public List<HospitalInfo> GetAllHospitalInfo(string searchString = "")
         {
+            if(searchString != "")
+            {
+                return _repositoryWrapper.HospitalInfoRepository.FindAll().Where(h =>
+                h.Name.Contains(searchString) ||
+                h.City.Contains(searchString) ||
+                h.Country.Contains(searchString))
+                    .ToList();
+            }
+
             return _repositoryWrapper.HospitalInfoRepository.FindAll().ToList();
         }
 

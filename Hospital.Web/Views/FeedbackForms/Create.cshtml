@@ -2,82 +2,96 @@
 @model Hospital.Models.FeedbackForm
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Feedback Form";
 }
 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link href="/css/card.css" rel="stylesheet" />
-
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Create</h4>
-            <span class="ml-1">New Feedback Form</span>
+<div class="container mt-5">
+    <!-- Page Header -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1 class="display-6">Create New Feedback Form</h1>
+            <p class="text-muted">Fill out the details to create a new feedback form.</p>
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+            <a class="btn btn-outline-secondary" asp-action="Index">
+                <i class="fa fa-arrow-left"></i> Back to List
+            </a>
         </div>
     </div>
-</div>
 
-<div class="container py-5">
-    <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
-                <div class="card-body text-center">
-                    <h4>Feedback Form</h4>
+    <!-- Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-primary mb-4">Feedback Form Details</h4>
                     <hr />
-                    <div class="text-left p-3">
-                        <form asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 my-2"><i class='bx bxs-book-content'></i> <b>Name</b></label>
-                                <div class="col-8">
-                                    <input asp-for="Name" class="form-control" />
-                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                </div>
-                            </div>
+                    <!-- Form -->
+                    <form asp-action="Create">
+                        <!-- Validation Summary -->
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 my-2"><i class='bx bxs-book-content'></i> <b>Description</b></label>
-                                <div class="col-8">
-                                    <input asp-for="Description" class="form-control" />
-                                    <span asp-validation-for="Description" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <!-- Name Field -->
+                        <div class="form-group mb-3">
+                            <label for="Name" class="form-label">
+                                <i class="fa fa-user text-primary mr-2"></i>
+                                Name
+                            </label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 my-2"><i class='bx bxs-book-content'></i> <b>Email</b></label>
-                                <div class="col-8">
-                                    <input asp-for="Email" class="form-control" />
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <!-- Description Field -->
+                        <div class="form-group mb-3">
+                            <label for="Description" class="form-label">
+                                <i class="fa fa-info-circle text-primary mr-2"></i>
+                                Description
+                            </label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 my-2"><i class='bx bxs-book-content'></i> <b>Phone</b></label>
-                                <div class="col-8">
-                                    <input asp-for="Phone" class="form-control" />
-                                    <span asp-validation-for="Phone" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <!-- Email Field -->
+                        <div class="form-group mb-3">
+                            <label for="Email" class="form-label">
+                                <i class="fa fa-envelope text-primary mr-2"></i>
+                                Email
+                            </label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 my-2"><i class='bx bxs-book-content'></i> <b>Rating Section</b></label>
-                                <div class="col-8">
-                                    <input asp-for="RatingSection" class="form-control" />
-                                    <span asp-validation-for="RatingSection" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <!-- Phone Field -->
+                        <div class="form-group mb-3">
+                            <label for="Phone" class="form-label">
+                                <i class="fa fa-phone text-primary mr-2"></i>
+                                Phone
+                            </label>
+                            <input asp-for="Phone" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group row my-4">
-                                <div class="col-4">
-                                    <a class="btn btn-outline-dark" asp-action="Index">Back to list</a>
-                                </div>
-                                <div class="col-8">
-                                    <input type="submit" value="Create" class="btn btn-primary" />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        <!-- Rating Section Field -->
+                        <div class="form-group mb-3">
+                            <label for="RatingSection" class="form-label">
+                                <i class="fa fa-star text-primary mr-2"></i>
+                                Rating Section
+                            </label>
+                            <input asp-for="RatingSection" class="form-control" />
+                            <span asp-validation-for="RatingSection" class="text-danger"></span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a class="btn btn-outline-secondary" asp-action="Index">
+                                <i class="fa fa-arrow-left"></i> Back to List
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Create
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

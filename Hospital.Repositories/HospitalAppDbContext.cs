@@ -15,8 +15,11 @@ namespace Hospital.Repositories
         public DbSet<Contact>? Contacts { get; set; }
         public DbSet<Department>? Departments { get; set; }
         public DbSet<FeedbackForm>? FeedbackForms { get; set; }
-        public DbSet<Room>? Rooms { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<CheckIn> CheckIns { get; set; }
+        public DbSet<MaintenanceTask> MaintenanceTasks { get; set; }
 
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

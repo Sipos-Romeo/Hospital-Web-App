@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Hospital.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Doctor,Admin")]
     public class AppointmentsController : Controller
     {
         private readonly IAppointmentService _appointmentService;

@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Hospital.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ContactsController : Controller
     {
         private readonly IContactServices _contactServices;
@@ -133,5 +133,11 @@ namespace Hospital.Web.Controllers
 
             return View(item);
         }
+
+        public IActionResult GetContacts()
+        {
+            return Ok("Access granted to Admin.");
+        }
+
     }
 }

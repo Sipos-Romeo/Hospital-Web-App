@@ -3,22 +3,103 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <!-- Hero Section -->
+    <div class="jumbotron jumbotron-fluid text-white" style="background: linear-gradient(to right, #4e73df, #224abe); padding: 4rem;">
+        <div class="container">
+            <h1 class="display-4">Welcome to Our Hospital!</h1>
+            <p class="lead">Your health and well-being are our top priorities.</p>
+        </div>
+    </div>
 
-    <br />
-    <br />
-    <br />
+    <!-- Section with Cards -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Hospital Info Card (Admin only) -->
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-info-circle-fill" style="font-size: 2rem; color: #4e73df;"></i>
+                            <h5 class="card-title mt-3">Hospital Info</h5>
+                            <p class="card-text">Learn about our hospital, facilities, and services.</p>
+                            <a asp-controller="HospitalInfoes" asp-action="Index" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            }
 
-    <div class="d-flex flex-wrap justify-content-center mt-4">
-        <a asp-controller="HospitalInfoes" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Hospital Info</a>
-        <a asp-controller="Appointments" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Appointments</a>
-        <a asp-controller="Contacts" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Contacts</a>
-        <a asp-controller="Departments" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Department</a>
-        <a asp-controller="FeedbackForms" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Feedback Form</a>
-        <a asp-controller="Rooms" class="btn btn-lg btn-outline-dark mx-2 mb-3" asp-action="Index">Rooms</a>
+            <!-- Appointments Card (Doctor, Admin) -->
+            @if (User.IsInRole("Doctor") || User.IsInRole("Admin"))
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-calendar-check-fill" style="font-size: 2rem; color: #4e73df;"></i>
+                            <h5 class="card-title mt-3">Appointments</h5>
+                            <p class="card-text">Manage your appointments with ease.</p>
+                            <a asp-controller="Appointments" asp-action="Index" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Contact Us Card (Admin only) -->
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-telephone-fill" style="font-size: 2rem; color: #4e73df;"></i>
+                            <h5 class="card-title mt-3">Contact Us</h5>
+                            <p class="card-text">Get in touch with our team for assistance.</p>
+                            <a asp-controller="Contacts" asp-action="Index" class="btn btn-primary">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Departments Card (Doctor only) -->
+            @if (User.IsInRole("Doctor"))
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-building" style="font-size: 2rem; color: #4e73df;"></i>
+                            <h5 class="card-title mt-3">Departments</h5>
+                            <p class="card-text">Explore our departments and specialties.</p>
+                            <a asp-controller="Departments" asp-action="Index" class="btn btn-primary">View Departments</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Feedback Form Card (Visible to all) -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-chat-dots-fill" style="font-size: 2rem; color: #4e73df;"></i>
+                        <h5 class="card-title mt-3">Feedback</h5>
+                        <p class="card-text">We value your feedback to improve our services.</p>
+                        <a asp-controller="FeedbackForms" asp-action="Index" class="btn btn-primary">Give Feedback</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rooms Card (Doctor only) -->
+            @if (User.IsInRole("Doctor"))
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-door-open-fill" style="font-size: 2rem; color: #4e73df;"></i>
+                            <h5 class="card-title mt-3">Rooms</h5>
+                            <p class="card-text">Check room availability and details.</p>
+                            <a asp-controller="Rooms" asp-action="Index" class="btn btn-primary">View Rooms</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
-
-
-
-

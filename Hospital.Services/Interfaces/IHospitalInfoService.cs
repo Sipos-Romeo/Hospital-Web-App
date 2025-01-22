@@ -13,6 +13,6 @@ namespace Hospital.Services.Interfaces
         void UpdateHospitalInfo(HospitalInfo hospitalInfo);
         void DeleteHospitalInfo(HospitalInfo hospitalInfo);
         HospitalInfo GetHospitalInfoById(int id);
-        List<HospitalInfo> GetAllHospitalInfo();
+        List<HospitalInfo> GetAllHospitalInfo(string searchString = "");
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hospital.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Doctor")]
     public class DepartmentsController : Controller
     {
         private readonly IDepartmentService _departmentService;

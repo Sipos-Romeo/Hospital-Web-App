@@ -1,0 +1,39 @@
+name: SonarCloud Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-analyze:
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Cache SonarCloud packages for faster builds
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+
+      # Step 3: Install SonarCloud Scanner
+      - name: Install SonarCloud scanner
+        uses: sonarsource/sonarcloud-github-action@v1
+
+      # Step 4: Build and Analyze the Project
+      - name: Build and analyze
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          dotnet build Hospital-Web-App.sln
+          dotnet-sonarscanner begin /k:"Sipos-Romeo_Hospital-Web-App" /o:"sipos-romeo" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          dotnet build Hospital-Web-App.sln
+          dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

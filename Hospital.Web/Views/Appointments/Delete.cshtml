@@ -2,65 +2,105 @@
 @model Hospital.Models.Appointment
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Create Appointment";
 }
 
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Delete</h4>
-            <span class="ml-1">Delete Appointment</span>
+<div class="container mt-5">
+    <!-- Page Header -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1 class="display-6">Create New Appointment</h1>
+            <p class="text-muted">Fill out the details to schedule a new appointment.</p>
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+            <a class="btn btn-outline-secondary" asp-action="Index">
+                <i class="fa fa-arrow-left"></i> Back to List
+            </a>
         </div>
     </div>
-</div>
 
-<div class="container py-5">
-    <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                <div class="card-body text-center">
-                    <h3 class="mb-5 text-danger">Delete Appointment?</h3>
+    <!-- Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-primary mb-4">Appointment Details</h4>
                     <hr />
-                    <div class="container">
-                        <div class="text-left">
-                           
-                            <div class="row">
-                                <div class="col-4">
-                                    <i class='bx bxs-category'></i>
-                                    <b>Number</b>
-                                </div>
-                                <div class="col-8">
-                                    @Html.DisplayFor(model => model.Number)
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-4">
-                                    <i class='bx bxs-category'></i>
-                                    <b>Type</b>
-                                </div>
-                                <div class="col-8">
-                                    @Html.DisplayFor(model => model.Type)
-                                </div>
-                            </div>
+                    <!-- Form -->
+                    <form asp-action="Create">
+                        <!-- Validation Summary -->
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
-                            <div class="row">
-                                <div class="col-4">
-                                    <i class='bx bxs-category'></i>
-                                    <b>Description</b>
-                                </div>
-                                <div class="col-8">
-                                    @Html.DisplayFor(model => model.Description)
-                                </div>
-                            </div>
+                        <!-- Number Field -->
+                        <div class="form-group mb-3">
+                            <label for="Number" class="form-label">
+                                <i class="fa fa-hashtag text-primary mr-2"></i>
+                                Appointment Number
+                            </label>
+                            <input asp-for="Number" class="form-control" />
+                            <span asp-validation-for="Number" class="text-danger"></span>
                         </div>
-                    </div>
 
-                    <hr class="my-4">
-                    <form asp-action="Delete">
-                        <a class="btn btn-outline-dark" asp-action="Index">Back to list</a>
-                        <input type="hidden" asp-for="Id" />
-                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        <!-- Type Field -->
+                        <div class="form-group mb-3">
+                            <label for="Type" class="form-label">
+                                <i class="fa fa-tags text-primary mr-2"></i>
+                                Appointment Type
+                            </label>
+                            <input asp-for="Type" class="form-control" />
+                            <span asp-validation-for="Type" class="text-danger"></span>
+                        </div>
+
+                        <!-- Created Date Field -->
+                        <div class="form-group mb-3">
+                            <label for="CreatedDate" class="form-label">
+                                <i class="fa fa-calendar text-primary mr-2"></i>
+                                Created Date
+                            </label>
+                            <input asp-for="CreatedDate" class="form-control" />
+                            <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                        </div>
+
+                        <!-- Description Field -->
+                        <div class="form-group mb-3">
+                            <label for="Description" class="form-label">
+                                <i class="fa fa-info-circle text-primary mr-2"></i>
+                                Description
+                            </label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <!-- Doctor Field -->
+                        <div class="form-group mb-3">
+                            <label for="Doctor" class="form-label">
+                                <i class="fa fa-user-md text-primary mr-2"></i>
+                                Doctor
+                            </label>
+                            <input asp-for="Doctor" class="form-control" />
+                            <span asp-validation-for="Doctor" class="text-danger"></span>
+                        </div>
+
+                        <!-- Patient Field -->
+                        <div class="form-group mb-3">
+                            <label for="Patient" class="form-label">
+                                <i class="fa fa-user text-primary mr-2"></i>
+                                Patient
+                            </label>
+                            <input asp-for="Patient" class="form-control" />
+                            <span asp-validation-for="Patient" class="text-danger"></span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a class="btn btn-outline-secondary" asp-action="Index">
+                                <i class="fa fa-arrow-left"></i> Back to List
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Create
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -1,92 +1,78 @@
-﻿@using Hospital.Services;
-
+﻿@using Hospital.Services
 @model Hospital.Models.FeedbackForm
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Feedback Form Details";
 }
-<link href="/css/card.css" rel="stylesheet" />
 
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Details</h4>
-            <span class="ml-1"></span>
+<div class="container mt-5">
+    <!-- Page Header -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1 class="display-6">Feedback Form Details</h1>
+            <p class="text-muted">View the details of the selected feedback form.</p>
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+            <a class="btn btn-outline-secondary" asp-action="Index">
+                <i class="fa fa-arrow-left"></i> Back to List
+            </a>
         </div>
     </div>
-</div>
 
-<body class="vh-10">
-    <div class="container py-5 h-10">
-        <div class="row d-flex justify-content-center align-items-center h-10">
-            <div class="col-md-8 col-lg-8">
-                <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
-                    <div class="card-body text-center">
-                        <h3 class="mb-5">Name</h3>
-                        <hr />
-                        <div class="container">
-                            <div class="text-left text-dark">
-                                <div class="row">
-                                    <div class="col">
-                                        <i class='bx bxs-category'></i>
-                                        <b>Name</b>
-                                    </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(model => model.Name)
-                                    </div>
-                                </div>
+    <!-- Details Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-primary text-center mb-4">Feedback Information</h4>
+                    <hr />
 
-                                <div class="row">
-                                    <div class="col">
-                                        <i class='bx bxs-category'></i>
-                                        <b>Description</b>
-                                    </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(model => model.Description)
-                                    </div>
-                                </div>
+                    <!-- Feedback Details -->
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4">
+                            <i class="fa fa-user text-primary mr-2"></i>
+                            Name
+                        </dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
 
-                                <div class="row">
-                                    <div class="col">
-                                        <i class='bx bxs-category'></i>
-                                        <b>Email</b>
-                                    </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(model => model.Email)
-                                    </div>
-                                </div>
+                        <dt class="col-sm-4">
+                            <i class="fa fa-info-circle text-primary mr-2"></i>
+                            Description
+                        </dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Description)</dd>
 
-                                <div class="row">
-                                    <div class="col">
-                                        <i class='bx bxs-category'></i>
-                                        <b>Phone</b>
-                                    </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(model => model.Phone)
-                                    </div>
-                                </div>
+                        <dt class="col-sm-4">
+                            <i class="fa fa-envelope text-primary mr-2"></i>
+                            Email
+                        </dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
 
-                                <div class="row">
-                                    <div class="col">
-                                        <i class='bx bxs-category'></i>
-                                        <b>RatingSection</b>
-                                    </div>
-                                    <div class="col">
-                                        @Html.DisplayFor(model => model.RatingSection)
-                                    </div>
-                                </div>
+                        <dt class="col-sm-4">
+                            <i class="fa fa-phone text-primary mr-2"></i>
+                            Phone
+                        </dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Phone)</dd>
 
-                            </div>
-                        </div>
+                        <dt class="col-sm-4">
+                            <i class="fa fa-star text-primary mr-2"></i>
+                            Rating Section
+                        </dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.RatingSection)</dd>
+                    </dl>
 
-                        <hr class="my-4">
-                        <a class="btn btn-lg btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-                        <a class="btn btn-lg btn-outline-dark" asp-action="Index">Back to list</a>
+                    <hr />
 
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary" asp-action="Index">
+                            <i class="fa fa-arrow-left"></i> Back to List
+                        </a>
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-
+</div>

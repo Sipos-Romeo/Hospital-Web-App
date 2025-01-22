@@ -1,81 +1,82 @@
-﻿@using Hospital.Services;
-
+﻿@using Hospital.Services
 @model Hospital.Models.Department
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Department";
 }
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link href="/css/card.css" rel="stylesheet" />
 
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Edit</h4>
-            <span class="ml-1"> Edit Contact info </span>
+<div class="container mt-5">
+    <!-- Page Header -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1 class="display-6">Edit Department</h1>
+            <p class="text-muted">Modify the details of the selected department.</p>
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+            <a class="btn btn-outline-secondary" asp-action="Index">
+                <i class="fa fa-arrow-left"></i> Back to List
+            </a>
         </div>
     </div>
-</div>
 
-<body class="vh-10">
-    <div class="container py-5 h-10">
-        <div class="row d-flex justify-content-center align-items-center h-10">
-            <div class="col-md-8 col-lg-8">
-                <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
-                    <div class="card-body text-center">
-                        <h4>Department info</h4>
-                        <hr />
-                        <div class="text-left p-3 text-dark">
-                            <form asp-action="Edit">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <input type="hidden" asp-for="Id" />
+    <!-- Edit Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-primary mb-4">Department Information</h4>
+                    <hr />
 
-                                <div class="form-group row my-3">
-                                    <div class="col-4 my-2">
-                                        <i class='bx bxs-book-content'></i>
-                                        <b>Name</b>
-                                    </div>
-                                    <div class="col-8">
-                                        <input asp-for="Name" class="form-control" />
-                                        <span asp-validation-for="Name" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-3">
-                                    <div class="col-4 my-2">
-                                        <i class='bx bxs-book-content'></i>
-                                        <b>Description</b>
-                                    </div>
-                                    <div class="col-8">
-                                        <input asp-for="Description" class="form-control" />
-                                        <span asp-validation-for="Description" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-3">
-                                    <div class="col-4 my-2">
-                                        <i class='bx bxs-book-content'></i>
-                                        <b>Employees</b>
-                                    </div>
-                                    <div class="col-8">
-                                        <input asp-for="Employees" class="form-control" />
-                                        <span asp-validation-for="Employees" class="text-danger"></span>
-                                    </div>
-                                </div>
+                    <!-- Form -->
+                    <form asp-action="Edit">
+                        <!-- Validation Summary -->
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
-                                <div class="form-group row my-4">
-                                    <div class="col-4">
-                                        <a class="btn btn-outline-dark" asp-action="Index">Back to list</a>
-                                    </div>
-                                    <div class="col-8">
-                                        <input type="submit" value=Save class="btn btn-primary" />
-                                    </div>
-                                </div>
-                            </form>
+                        <!-- Hidden ID Field -->
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Name Field -->
+                        <div class="form-group mb-3">
+                            <label for="Name" class="form-label">
+                                <i class="fa fa-building text-primary mr-2"></i>
+                                Name
+                            </label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
-                    </div>
+
+                        <!-- Description Field -->
+                        <div class="form-group mb-3">
+                            <label for="Description" class="form-label">
+                                <i class="fa fa-info-circle text-primary mr-2"></i>
+                                Description
+                            </label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <!-- Employees Field -->
+                        <div class="form-group mb-3">
+                            <label for="Employees" class="form-label">
+                                <i class="fa fa-users text-primary mr-2"></i>
+                                Employees
+                            </label>
+                            <input asp-for="Employees" class="form-control" />
+                            <span asp-validation-for="Employees" class="text-danger"></span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a class="btn btn-outline-secondary" asp-action="Index">
+                                <i class="fa fa-arrow-left"></i> Back to List
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Save
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
     </div>
-</body>
-
+</div>

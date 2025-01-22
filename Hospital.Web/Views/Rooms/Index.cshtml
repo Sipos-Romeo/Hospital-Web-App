@@ -1,59 +1,57 @@
-﻿@using Hospital.Services;
-
+﻿@using Hospital.Services
 @model IEnumerable<Hospital.Models.Room>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Rooms";
 }
-<link rel="stylesheet" href="/vendor/datatables/css/jquery.dataTables.min.css" />
-<link href="/css/card.css" rel="stylesheet" />
 
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Room information!</h4>
-            <span class="ml-1">All rooms available</span>
+<div class="container mt-5">
+    <!-- Page Header -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1 class="display-6">Room Information</h1>
+            <p class="text-muted">View all rooms available in the hospital.</p>
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+            <a class="btn btn-primary btn-lg" asp-action="Create">
+                <i class="fa fa-plus"></i> Create New Room
+            </a>
         </div>
     </div>
-    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-        <a class="btn btn-rounded btn-primary" asp-action="Create">
-            <span class="btn-icon-left text-dark">
-                <i class="fa fa-plus color-primary"></i>
-            </span>Create
-        </a>
 
-    </div>
-</div>
-
-
-<form>
-    <div class="container">
-        <div class="row justify-content-center">
-
-                @foreach (var room in Model)
-                {
-                    <div class="col-md-4">
-                        <div class="card testimonial-card mt-2 mb-3">
-                            <div class="card-body text-center">
-                                <hr />
-                            <div class="text-muted">@room.RoomNumber</div>
-                            <p>@room.RoomNumber</p>
-                            </div>
-                            <div class="card-footer d-flex justify-content-center">
-                                <a class="text-muted mx-3" asp-action="Edit" asp-route-id="@room.Id">
-                                    <i class='bx bxs-edit-alt'></i> Edit
-                                </a>
-                                <a class="text-muted mx-3" asp-action="Details" asp-route-id="@room.Id">
-                                    <i class='bx bxs-detail'></i> Details
-                                </a>
-                            <a class="text-danger mx-3" asp-action="Delete" asp-route-id="@room.Id">
-                                    <i class='bx bxs-trash'></i> Delete
-                                </a>
-                            </div>
+    <!-- Rooms Cards -->
+    <div class="row">
+        @if (!Model.Any())
+        {
+            <div class="col-12">
+                <p class="text-muted text-center">No rooms available. Click "Create New Room" to add one.</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var room in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-primary">Room Number: @room.RoomNumber</h5>
+                            <p class="card-text text-muted">Type: @room.Type</p>
+                            <p class="card-text text-muted">Status: @room.Status</p>
+                        </div>
+                        <div class="card-footer bg-light d-flex justify-content-around">
+                            <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@room.Id">
+                                <i class="fa fa-edit"></i> Edit
+                            </a>
+                            <a class="btn btn-outline-secondary btn-sm" asp-action="Details" asp-route-id="@room.Id">
+                                <i class="fa fa-info-circle"></i> Details
+                            </a>
+                            <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@room.Id">
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
                         </div>
                     </div>
+                </div>
             }
-        </div>
+        }
     </div>
-
-</form>
+</div>

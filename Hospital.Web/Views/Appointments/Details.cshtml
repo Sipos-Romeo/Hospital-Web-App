@@ -2,63 +2,63 @@
 @model Hospital.Models.Appointment
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Appointment Details";
 }
-<link href="/css/card.css" rel="stylesheet" />
 
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Details</h4>
+<div class="container mt-5">
+    <!-- Page Header -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1 class="display-6">Appointment Details</h1>
+            <p class="text-muted">View the details of the selected appointment.</p>
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+            <a class="btn btn-outline-secondary" asp-action="Index">
+                <i class="fa fa-arrow-left"></i> Back to List
+            </a>
         </div>
     </div>
-</div>
 
-<div class="container py-5">
-    <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
-                <div class="card-body text-center">
-                    <h3 class="mb-5">Number</h3>
+    <!-- Details Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-primary text-center mb-4">Appointment Information</h4>
                     <hr />
-                    <div class="container">
-                        <div class="text-left text-dark">
-                           
-                            <div class="row">
-                                <div class="col-4">
-                                    <i class='bx bxs-category'></i>
-                                    <b>Number</b>
-                                </div>
-                                <div class="col-8">
-                                    @Html.DisplayFor(model => model.Number)
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-4">
-                                    <i class='bx bxs-category'></i>
-                                    <b>Type</b>
-                                </div>
-                                <div class="col-8">
-                                    @Html.DisplayFor(model => model.Type)
-                                </div>
-                            </div>
+                    <!-- Appointment Details -->
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4">
+                            <i class="fa fa-hashtag text-primary mr-2"></i>
+                            Appointment Number
+                        </dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Number)</dd>
 
-                            <div class="row">
-                                <div class="col-4">
-                                    <i class='bx bxs-category'></i>
-                                    <b>Description</b>
-                                </div>
-                                <div class="col-8">
-                                    @Html.DisplayFor(model => model.Description)
-                                </div>
-                            </div>
-                        </div>
+                        <dt class="col-sm-4">
+                            <i class="fa fa-tags text-primary mr-2"></i>
+                            Appointment Type
+                        </dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Type)</dd>
+
+                        <dt class="col-sm-4">
+                            <i class="fa fa-info-circle text-primary mr-2"></i>
+                            Description
+                        </dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Description)</dd>
+                    </dl>
+
+                    <hr />
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary" asp-action="Index">
+                            <i class="fa fa-arrow-left"></i> Back to List
+                        </a>
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
                     </div>
-
-                    <hr class="my-4">
-                    <a class="btn btn-lg btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-                    <a class="btn btn-lg btn-outline-dark" asp-action="Index">Back to list</a>
                 </div>
             </div>
         </div>

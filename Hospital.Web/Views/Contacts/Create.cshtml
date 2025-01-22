@@ -1,82 +1,93 @@
-﻿@using Hospital.Services;
+﻿@using Hospital.Services
 @model Hospital.ViewModels.ContactViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Contact";
 }
 
-<div class="row page-titles mx-0">
-    <div class="col-sm-6 p-md-0">
-        <div class="welcome-text">
-            <h4>Create</h4>
-            <span class="ml-1">New Contact</span>
+<div class="container mt-5">
+    <!-- Page Header -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-8">
+            <h1 class="display-6">Create New Contact</h1>
+            <p class="text-muted">Fill out the details to add a new contact.</p>
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+            <a class="btn btn-outline-secondary" asp-action="Index">
+                <i class="fa fa-arrow-left"></i> Back to List
+            </a>
         </div>
     </div>
-</div>
 
-<div class="container py-5">
-    <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-md-8 col-lg-8">
-            <div class="card testimonial-card shadow-2-strong" style="border-radius: 1rem;">
-                <div class="card-body text-center">
-                    <div class="avatar-simple mx-auto mb-1 mt-2">
-                        <i class="bi bi-hospital"></i>
-                    </div>
-                    <h4>Contact</h4>
+    <!-- Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title text-primary mb-4">Contact Information</h4>
                     <hr />
-                    <div class="text-left p-3 text-dark">
-                        <form asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                    <!-- Form -->
+                    <form asp-action="Create">
+                        <!-- Validation Summary -->
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Email:</b></label>
-                                <div class="col-8">
-                                    <input asp-for="Contact.Email" class="form-control" />
-                                    <span asp-validation-for="Contact.Email" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <!-- Email Field -->
+                        <div class="form-group mb-3">
+                            <label for="Email" class="form-label">
+                                <i class="fa fa-envelope text-primary mr-2"></i>
+                                Email
+                            </label>
+                            <input asp-for="Contact.Email" class="form-control" />
+                            <span asp-validation-for="Contact.Email" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Phone:</b></label>
-                                <div class="col-8">
-                                    <input asp-for="Contact.Phone" class="form-control" />
-                                    <span asp-validation-for="Contact.Phone" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <!-- Phone Field -->
+                        <div class="form-group mb-3">
+                            <label for="Phone" class="form-label">
+                                <i class="fa fa-phone text-primary mr-2"></i>
+                                Phone
+                            </label>
+                            <input asp-for="Contact.Phone" class="form-control" />
+                            <span asp-validation-for="Contact.Phone" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Phone Number:</b></label>
-                                <div class="col-8">
-                                    <input asp-for="Contact.PhoneNumber" class="form-control" />
-                                    <span asp-validation-for="Contact.PhoneNumber" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <!-- Phone Number Field -->
+                        <div class="form-group mb-3">
+                            <label for="PhoneNumber" class="form-label">
+                                <i class="fa fa-mobile-alt text-primary mr-2"></i>
+                                Phone Number
+                            </label>
+                            <input asp-for="Contact.PhoneNumber" class="form-control" />
+                            <span asp-validation-for="Contact.PhoneNumber" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group row my-3">
-                                <label class="col-4 col-form-label"><i class='bx bxs-book-content'></i> <b>Hospital Information:</b></label>
-                                <div class="col-8">
-                                    <select asp-for="Contact.HospitalInfoId" class="form-select" id="HospitalDropdown">
-                                        <option value="">-- Select Hospital --</option>
-                                        @foreach (var hospital in Model.Hospitals)
-                                        {
-                                            <option value="@hospital.Key">@hospital.Value</option>
-                                        }
-                                    </select>
-                                    <span asp-validation-for="Contact.HospitalInfo" class="text-danger"></span>
-                                </div>
-                            </div>
+                        <!-- Hospital Information Dropdown -->
+                        <div class="form-group mb-3">
+                            <label for="HospitalInfoId" class="form-label">
+                                <i class="fa fa-hospital text-primary mr-2"></i>
+                                Hospital Information
+                            </label>
+                            <select asp-for="Contact.HospitalInfoId" class="form-select" id="HospitalDropdown">
+                                <option value="">-- Select Hospital --</option>
+                                @foreach (var hospital in Model.Hospitals)
+                                {
+                                    <option value="@hospital.Key">@hospital.Value</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Contact.HospitalInfoId" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group row my-4">
-                                <div class="col-4">
-                                    <a class="btn btn-outline-dark" asp-action="Index">Back to list</a>
-                                </div>
-                                <div class="col-8 text-right">
-                                    <input type="submit" value="Create" class="btn btn-primary" />
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a class="btn btn-outline-secondary" asp-action="Index">
+                                <i class="fa fa-arrow-left"></i> Back to List
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Create
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

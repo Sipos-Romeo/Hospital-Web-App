@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Create Feedback Form";
 }
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 <div class="container mt-5">
     <!-- Page Header -->
@@ -74,11 +75,20 @@
 
                         <!-- Rating Section Field -->
                         <div class="form-group mb-3">
-                            <label for="RatingSection" class="form-label">
+                            <label class="form-label">
                                 <i class="fa fa-star text-primary mr-2"></i>
                                 Rating Section
                             </label>
-                            <input asp-for="RatingSection" class="form-control" />
+                            <div id="rating-stars" class="rating-stars">
+                                <!-- Dynamic stars generated here -->
+                                <i class="fa fa-star" data-value="1"></i>
+                                <i class="fa fa-star" data-value="2"></i>
+                                <i class="fa fa-star" data-value="3"></i>
+                                <i class="fa fa-star" data-value="4"></i>
+                                <i class="fa fa-star" data-value="5"></i>
+                            </div>
+                            <!-- Hidden Input for Rating -->
+                            <input asp-for="RatingSection" type="hidden" id="RatingSection" />
                             <span asp-validation-for="RatingSection" class="text-danger"></span>
                         </div>
 
@@ -97,3 +107,44 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const stars = document.querySelectorAll("#rating-stars i");
+            const ratingInput = document.getElementById("RatingSection");
+
+            stars.forEach(star => {
+                star.addEventListener("click", function () {
+                    const rating = this.getAttribute("data-value");
+                    ratingInput.value = rating;
+
+                    // Update star colors
+                    stars.forEach(s => {
+                        if (s.getAttribute("data-value") <= rating) {
+                            s.classList.add("text-warning");
+                            s.classList.remove("text-muted");
+                        } else {
+                            s.classList.remove("text-warning");
+                            s.classList.add("text-muted");
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <style>
+        .rating-stars i {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .rating-stars i.text-muted {
+            color: #ccc;
+        }
+
+        .rating-stars i.text-warning {
+            color: #ffc107;
+        }
+    </style>
+}

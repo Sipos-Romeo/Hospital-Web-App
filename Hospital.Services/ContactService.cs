@@ -1,6 +1,7 @@
 ﻿using Hospital.Models;
 using Hospital.Repositories.Interfaces;
 using Hospital.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace Hospital.Services
 
         public List<Contact> GetAllContact()
         {
-            return _repositoryWrapper.ContactRepository.FindAll().ToList();
+            return _repositoryWrapper.ContactRepository.FindAll().Include(h => h.HospitalInfo).ToList();
         }
 
         public Contact GetContactById(int id)

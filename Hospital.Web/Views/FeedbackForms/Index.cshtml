@@ -38,14 +38,17 @@
                             <p class="card-text text-muted">@feedbackForm.Description</p>
                         </div>
                         <div class="card-footer bg-light d-flex justify-content-around">
-                            <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@feedbackForm.Id">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@feedbackForm.Id">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@feedbackForm.Id">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            }
                             <a class="btn btn-outline-secondary btn-sm" asp-action="Details" asp-route-id="@feedbackForm.Id">
                                 <i class="fa fa-info-circle"></i> Details
-                            </a>
-                            <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@feedbackForm.Id">
-                                <i class="fa fa-trash"></i> Delete
                             </a>
                         </div>
                     </div>

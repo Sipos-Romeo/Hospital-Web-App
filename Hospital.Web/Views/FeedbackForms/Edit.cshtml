@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Edit Feedback Form";
 }
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 <div class="container mt-5">
     <!-- Page Header -->
@@ -75,13 +76,19 @@
                             <span asp-validation-for="Phone" class="text-danger"></span>
                         </div>
 
-                        <!-- Rating Section Field -->
+                        <!-- Star Rating Section -->
                         <div class="form-group mb-3">
-                            <label for="RatingSection" class="form-label">
+                            <label class="form-label">
                                 <i class="fa fa-star text-primary mr-2"></i>
                                 Rating Section
                             </label>
-                            <input asp-for="RatingSection" class="form-control" />
+                            <div id="star-rating" class="d-flex">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="fa fa-star star-icon @((i <= Model.RatingSection) ? "selected" : "")" data-value="@i"></i>
+                                }
+                            </div>
+                            <input type="hidden" asp-for="RatingSection" id="RatingSection" />
                             <span asp-validation-for="RatingSection" class="text-danger"></span>
                         </div>
 
@@ -100,3 +107,45 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const stars = document.querySelectorAll(".star-icon");
+            const ratingInput = document.getElementById("RatingSection");
+
+            // Add click event to each star
+            stars.forEach(star => {
+                star.addEventListener("click", function () {
+                    const ratingValue = this.getAttribute("data-value");
+                    ratingInput.value = ratingValue;
+
+                    // Highlight selected stars
+                    stars.forEach(s => {
+                        if (s.getAttribute("data-value") <= ratingValue) {
+                            s.classList.add("selected");
+                        } else {
+                            s.classList.remove("selected");
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <style>
+        .star-icon {
+            font-size: 1.5rem;
+            color: #d3d3d3;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+            .star-icon.selected {
+                color: #ffc107;
+            }
+
+            .star-icon:hover {
+                color: #ffc107;
+            }
+    </style>
+}
